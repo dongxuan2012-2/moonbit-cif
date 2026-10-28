@@ -1,0 +1,16 @@
+﻿#\#CIF_2.0
+data_实验
+_title '目录'
+loop_
+_root_id
+_root_value
+X 99
+save_测量
+_note '帧'
+loop_
+_ID
+_payload
+_value
+A [1 {'k':2}] 10 # keep A
+B {'k':[3 4]} 20 # keep B
+save_

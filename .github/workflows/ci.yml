@@ -88,3 +88,6 @@ jobs:
       - name: File plan target validation contracts
         working-directory: examples/file-workflow
         run: node tests/plan-targets.mjs
+      - name: Catalog discovery consumer chain
+        working-directory: examples/file-workflow
+        run: node tests/catalog-consumer.mjs

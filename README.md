@@ -107,6 +107,8 @@ node review-preview.mjs work/sample.preview.json work/sample.context.html --sour
 
 `node tests/plan-targets.mjs`通过真实文件CLI验证保存计划的目标选择与整批拒绝。固定小CIF和JSON计划覆盖缺失/歧义ID、合法前项后的非法CIF值，以及已有目标时的文件保护；合法单项和四ID对照均与独立手写的完整输出字节比较。样本保持`A/a`区分、引用`?/.`可作ID而裸缺失标记不作ID、复合值不展平等原语义。测试不传预计结果散列选项，直接核计划拒绝、磁盘回执和文件/目录前后字节；CI执行同一命令，不新增生产输入限制。
 
+`node tests/catalog-consumer.mjs`提供可运行的目录消费链：调用者明确选定固定样本的frame/loop/ID列，下游用真实目录的`name`/`tags`和query的ID/源散列建立计划，执行现有apply，再catalog/query回读。独立手写CIF、完整输出和目录/同行JSON预期核对中文名称、原始BOM/CRLF、UTF-8半开字节跨度及单列中的嵌套List/Table；复合值各算一个cell。另核pair-only目录的空loop及误作loop查询时的拒绝，输入始终保持原字节。CI执行同一消费链；产品不自动选择ID，也不增加格式或改变missing-marker政策。
+
 ## 公共库用法
 
 ```moonbit

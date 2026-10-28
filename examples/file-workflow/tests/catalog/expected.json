@@ -1,0 +1,896 @@
+{
+  "catalogBefore": {
+    "ok": true,
+    "sourceSha256": "f320c106ae3815f6b1737a77de9fbf07d2c3712b7f89c63fb88598fc2632039d",
+    "version": "CIF2.0",
+    "blocks": [
+      {
+        "name": "实验",
+        "header": "data_实验",
+        "nameSpan": {
+          "start_line": 2,
+          "start_col": 1,
+          "end_line": 2,
+          "end_col": 8,
+          "start_offset": 15,
+          "end_offset": 26
+        },
+        "pairs": [
+          {
+            "tag": "_title",
+            "tagSpan": {
+              "start_line": 3,
+              "start_col": 1,
+              "end_line": 3,
+              "end_col": 7,
+              "start_offset": 28,
+              "end_offset": 34
+            },
+            "valueSpan": {
+              "start_line": 3,
+              "start_col": 8,
+              "end_line": 3,
+              "end_col": 12,
+              "start_offset": 35,
+              "end_offset": 43
+            }
+          }
+        ],
+        "loops": [
+          {
+            "tags": [
+              "_root_id",
+              "_root_value"
+            ],
+            "tagSpans": [
+              {
+                "start_line": 5,
+                "start_col": 1,
+                "end_line": 5,
+                "end_col": 9,
+                "start_offset": 52,
+                "end_offset": 60
+              },
+              {
+                "start_line": 6,
+                "start_col": 1,
+                "end_line": 6,
+                "end_col": 12,
+                "start_offset": 62,
+                "end_offset": 73
+              }
+            ],
+            "columnCount": 2,
+            "valueCount": 2,
+            "rowCount": 1,
+            "span": {
+              "start_line": 4,
+              "start_col": 1,
+              "end_line": 7,
+              "end_col": 5,
+              "start_offset": 45,
+              "end_offset": 79
+            }
+          }
+        ],
+        "frames": [
+          {
+            "name": "测量",
+            "header": "save_测量",
+            "nameSpan": {
+              "start_line": 8,
+              "start_col": 1,
+              "end_line": 8,
+              "end_col": 8,
+              "start_offset": 81,
+              "end_offset": 92
+            },
+            "pairs": [
+              {
+                "tag": "_note",
+                "tagSpan": {
+                  "start_line": 9,
+                  "start_col": 1,
+                  "end_line": 9,
+                  "end_col": 6,
+                  "start_offset": 94,
+                  "end_offset": 99
+                },
+                "valueSpan": {
+                  "start_line": 9,
+                  "start_col": 7,
+                  "end_line": 9,
+                  "end_col": 10,
+                  "start_offset": 100,
+                  "end_offset": 105
+                }
+              }
+            ],
+            "loops": [
+              {
+                "tags": [
+                  "_ID",
+                  "_payload",
+                  "_value"
+                ],
+                "tagSpans": [
+                  {
+                    "start_line": 11,
+                    "start_col": 1,
+                    "end_line": 11,
+                    "end_col": 4,
+                    "start_offset": 114,
+                    "end_offset": 117
+                  },
+                  {
+                    "start_line": 12,
+                    "start_col": 1,
+                    "end_line": 12,
+                    "end_col": 9,
+                    "start_offset": 119,
+                    "end_offset": 127
+                  },
+                  {
+                    "start_line": 13,
+                    "start_col": 1,
+                    "end_line": 13,
+                    "end_col": 7,
+                    "start_offset": 129,
+                    "end_offset": 135
+                  }
+                ],
+                "columnCount": 3,
+                "valueCount": 6,
+                "rowCount": 2,
+                "span": {
+                  "start_line": 10,
+                  "start_col": 1,
+                  "end_line": 15,
+                  "end_col": 17,
+                  "start_offset": 107,
+                  "end_offset": 180
+                }
+              }
+            ],
+            "frames": []
+          }
+        ]
+      }
+    ]
+  },
+  "catalogAfter": {
+    "ok": true,
+    "sourceSha256": "e64bb0efe596de6a8baafadd19a43ac2068ade198bc653665b9a4b4b42cc7ce8",
+    "version": "CIF2.0",
+    "blocks": [
+      {
+        "name": "实验",
+        "header": "data_实验",
+        "nameSpan": {
+          "start_line": 2,
+          "start_col": 1,
+          "end_line": 2,
+          "end_col": 8,
+          "start_offset": 15,
+          "end_offset": 26
+        },
+        "pairs": [
+          {
+            "tag": "_title",
+            "tagSpan": {
+              "start_line": 3,
+              "start_col": 1,
+              "end_line": 3,
+              "end_col": 7,
+              "start_offset": 28,
+              "end_offset": 34
+            },
+            "valueSpan": {
+              "start_line": 3,
+              "start_col": 8,
+              "end_line": 3,
+              "end_col": 12,
+              "start_offset": 35,
+              "end_offset": 43
+            }
+          }
+        ],
+        "loops": [
+          {
+            "tags": [
+              "_root_id",
+              "_root_value"
+            ],
+            "tagSpans": [
+              {
+                "start_line": 5,
+                "start_col": 1,
+                "end_line": 5,
+                "end_col": 9,
+                "start_offset": 52,
+                "end_offset": 60
+              },
+              {
+                "start_line": 6,
+                "start_col": 1,
+                "end_line": 6,
+                "end_col": 12,
+                "start_offset": 62,
+                "end_offset": 73
+              }
+            ],
+            "columnCount": 2,
+            "valueCount": 2,
+            "rowCount": 1,
+            "span": {
+              "start_line": 4,
+              "start_col": 1,
+              "end_line": 7,
+              "end_col": 5,
+              "start_offset": 45,
+              "end_offset": 79
+            }
+          }
+        ],
+        "frames": [
+          {
+            "name": "测量",
+            "header": "save_测量",
+            "nameSpan": {
+              "start_line": 8,
+              "start_col": 1,
+              "end_line": 8,
+              "end_col": 8,
+              "start_offset": 81,
+              "end_offset": 92
+            },
+            "pairs": [
+              {
+                "tag": "_note",
+                "tagSpan": {
+                  "start_line": 9,
+                  "start_col": 1,
+                  "end_line": 9,
+                  "end_col": 6,
+                  "start_offset": 94,
+                  "end_offset": 99
+                },
+                "valueSpan": {
+                  "start_line": 9,
+                  "start_col": 7,
+                  "end_line": 9,
+                  "end_col": 10,
+                  "start_offset": 100,
+                  "end_offset": 105
+                }
+              }
+            ],
+            "loops": [
+              {
+                "tags": [
+                  "_ID",
+                  "_payload",
+                  "_value"
+                ],
+                "tagSpans": [
+                  {
+                    "start_line": 11,
+                    "start_col": 1,
+                    "end_line": 11,
+                    "end_col": 4,
+                    "start_offset": 114,
+                    "end_offset": 117
+                  },
+                  {
+                    "start_line": 12,
+                    "start_col": 1,
+                    "end_line": 12,
+                    "end_col": 9,
+                    "start_offset": 119,
+                    "end_offset": 127
+                  },
+                  {
+                    "start_line": 13,
+                    "start_col": 1,
+                    "end_line": 13,
+                    "end_col": 7,
+                    "start_offset": 129,
+                    "end_offset": 135
+                  }
+                ],
+                "columnCount": 3,
+                "valueCount": 6,
+                "rowCount": 2,
+                "span": {
+                  "start_line": 10,
+                  "start_col": 1,
+                  "end_line": 15,
+                  "end_col": 19,
+                  "start_offset": 107,
+                  "end_offset": 182
+                }
+              }
+            ],
+            "frames": []
+          }
+        ]
+      }
+    ]
+  },
+  "queryBefore": {
+    "ok": true,
+    "sourceSha256": "f320c106ae3815f6b1737a77de9fbf07d2c3712b7f89c63fb88598fc2632039d",
+    "block": "实验",
+    "frame": "测量",
+    "columns": [
+      "_ID",
+      "_payload",
+      "_value"
+    ],
+    "rows": [
+      [
+        {
+          "value": "A",
+          "kind": "word",
+          "literal": "A",
+          "span": {
+            "start_line": 14,
+            "start_col": 1,
+            "end_line": 14,
+            "end_col": 2,
+            "start_offset": 137,
+            "end_offset": 138
+          }
+        },
+        {
+          "value": [
+            "1",
+            {
+              "k": "2"
+            }
+          ],
+          "kind": "list",
+          "literal": "[1 {'k':2}]",
+          "span": {
+            "start_line": 14,
+            "start_col": 3,
+            "end_line": 14,
+            "end_col": 14,
+            "start_offset": 139,
+            "end_offset": 150
+          }
+        },
+        {
+          "value": "10",
+          "kind": "word",
+          "literal": "10",
+          "span": {
+            "start_line": 14,
+            "start_col": 15,
+            "end_line": 14,
+            "end_col": 17,
+            "start_offset": 151,
+            "end_offset": 153
+          }
+        }
+      ],
+      [
+        {
+          "value": "B",
+          "kind": "word",
+          "literal": "B",
+          "span": {
+            "start_line": 15,
+            "start_col": 1,
+            "end_line": 15,
+            "end_col": 2,
+            "start_offset": 164,
+            "end_offset": 165
+          }
+        },
+        {
+          "value": {
+            "k": [
+              "3",
+              "4"
+            ]
+          },
+          "kind": "table",
+          "literal": "{'k':[3 4]}",
+          "span": {
+            "start_line": 15,
+            "start_col": 3,
+            "end_line": 15,
+            "end_col": 14,
+            "start_offset": 166,
+            "end_offset": 177
+          }
+        },
+        {
+          "value": "20",
+          "kind": "word",
+          "literal": "20",
+          "span": {
+            "start_line": 15,
+            "start_col": 15,
+            "end_line": 15,
+            "end_col": 17,
+            "start_offset": 178,
+            "end_offset": 180
+          }
+        }
+      ]
+    ]
+  },
+  "queryAfter": {
+    "ok": true,
+    "sourceSha256": "e64bb0efe596de6a8baafadd19a43ac2068ade198bc653665b9a4b4b42cc7ce8",
+    "block": "实验",
+    "frame": "测量",
+    "columns": [
+      "_ID",
+      "_payload",
+      "_value"
+    ],
+    "rows": [
+      [
+        {
+          "value": "A",
+          "kind": "word",
+          "literal": "A",
+          "span": {
+            "start_line": 14,
+            "start_col": 1,
+            "end_line": 14,
+            "end_col": 2,
+            "start_offset": 137,
+            "end_offset": 138
+          }
+        },
+        {
+          "value": [
+            "1",
+            {
+              "k": "2"
+            }
+          ],
+          "kind": "list",
+          "literal": "[1 {'k':2}]",
+          "span": {
+            "start_line": 14,
+            "start_col": 3,
+            "end_line": 14,
+            "end_col": 14,
+            "start_offset": 139,
+            "end_offset": 150
+          }
+        },
+        {
+          "value": "10",
+          "kind": "word",
+          "literal": "10",
+          "span": {
+            "start_line": 14,
+            "start_col": 15,
+            "end_line": 14,
+            "end_col": 17,
+            "start_offset": 151,
+            "end_offset": 153
+          }
+        }
+      ],
+      [
+        {
+          "value": "B",
+          "kind": "word",
+          "literal": "B",
+          "span": {
+            "start_line": 15,
+            "start_col": 1,
+            "end_line": 15,
+            "end_col": 2,
+            "start_offset": 164,
+            "end_offset": 165
+          }
+        },
+        {
+          "value": {
+            "k": [
+              "3",
+              "4"
+            ]
+          },
+          "kind": "table",
+          "literal": "{'k':[3 4]}",
+          "span": {
+            "start_line": 15,
+            "start_col": 3,
+            "end_line": 15,
+            "end_col": 14,
+            "start_offset": 166,
+            "end_offset": 177
+          }
+        },
+        {
+          "value": "2000",
+          "kind": "word",
+          "literal": "2000",
+          "span": {
+            "start_line": 15,
+            "start_col": 15,
+            "end_line": 15,
+            "end_col": 19,
+            "start_offset": 178,
+            "end_offset": 182
+          }
+        }
+      ]
+    ]
+  },
+  "pairCatalog": {
+    "ok": true,
+    "sourceSha256": "2ae5c34f04b21e339b7ae3655c42cfe49e86276636d3c435fb1815ab19fc657e",
+    "version": "CIF2.0",
+    "blocks": [
+      {
+        "name": "单项",
+        "header": "data_单项",
+        "nameSpan": {
+          "start_line": 2,
+          "start_col": 1,
+          "end_line": 2,
+          "end_col": 8,
+          "start_offset": 12,
+          "end_offset": 23
+        },
+        "pairs": [
+          {
+            "tag": "_only",
+            "tagSpan": {
+              "start_line": 3,
+              "start_col": 1,
+              "end_line": 3,
+              "end_col": 6,
+              "start_offset": 25,
+              "end_offset": 30
+            },
+            "valueSpan": {
+              "start_line": 3,
+              "start_col": 7,
+              "end_line": 3,
+              "end_col": 11,
+              "start_offset": 31,
+              "end_offset": 39
+            }
+          }
+        ],
+        "loops": [],
+        "frames": []
+      }
+    ]
+  },
+  "beforeSlices": [
+    {
+      "path": [
+        "blocks",
+        0,
+        "nameSpan"
+      ],
+      "literal": "data_实验"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "pairs",
+        0,
+        "tagSpan"
+      ],
+      "literal": "_title"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "pairs",
+        0,
+        "valueSpan"
+      ],
+      "literal": "'目录'"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "loops",
+        0,
+        "tagSpans",
+        0
+      ],
+      "literal": "_root_id"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "loops",
+        0,
+        "tagSpans",
+        1
+      ],
+      "literal": "_root_value"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "loops",
+        0,
+        "span"
+      ],
+      "literal": "loop_\r\n_root_id\r\n_root_value\r\nX 99"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "frames",
+        0,
+        "nameSpan"
+      ],
+      "literal": "save_测量"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "frames",
+        0,
+        "pairs",
+        0,
+        "tagSpan"
+      ],
+      "literal": "_note"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "frames",
+        0,
+        "pairs",
+        0,
+        "valueSpan"
+      ],
+      "literal": "'帧'"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "frames",
+        0,
+        "loops",
+        0,
+        "tagSpans",
+        0
+      ],
+      "literal": "_ID"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "frames",
+        0,
+        "loops",
+        0,
+        "tagSpans",
+        1
+      ],
+      "literal": "_payload"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "frames",
+        0,
+        "loops",
+        0,
+        "tagSpans",
+        2
+      ],
+      "literal": "_value"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "frames",
+        0,
+        "loops",
+        0,
+        "span"
+      ],
+      "literal": "loop_\r\n_ID\r\n_payload\r\n_value\r\nA [1 {'k':2}] 10 # keep A\r\nB {'k':[3 4]} 20"
+    }
+  ],
+  "afterSlices": [
+    {
+      "path": [
+        "blocks",
+        0,
+        "nameSpan"
+      ],
+      "literal": "data_实验"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "pairs",
+        0,
+        "tagSpan"
+      ],
+      "literal": "_title"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "pairs",
+        0,
+        "valueSpan"
+      ],
+      "literal": "'目录'"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "loops",
+        0,
+        "tagSpans",
+        0
+      ],
+      "literal": "_root_id"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "loops",
+        0,
+        "tagSpans",
+        1
+      ],
+      "literal": "_root_value"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "loops",
+        0,
+        "span"
+      ],
+      "literal": "loop_\r\n_root_id\r\n_root_value\r\nX 99"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "frames",
+        0,
+        "nameSpan"
+      ],
+      "literal": "save_测量"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "frames",
+        0,
+        "pairs",
+        0,
+        "tagSpan"
+      ],
+      "literal": "_note"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "frames",
+        0,
+        "pairs",
+        0,
+        "valueSpan"
+      ],
+      "literal": "'帧'"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "frames",
+        0,
+        "loops",
+        0,
+        "tagSpans",
+        0
+      ],
+      "literal": "_ID"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "frames",
+        0,
+        "loops",
+        0,
+        "tagSpans",
+        1
+      ],
+      "literal": "_payload"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "frames",
+        0,
+        "loops",
+        0,
+        "tagSpans",
+        2
+      ],
+      "literal": "_value"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "frames",
+        0,
+        "loops",
+        0,
+        "span"
+      ],
+      "literal": "loop_\r\n_ID\r\n_payload\r\n_value\r\nA [1 {'k':2}] 10 # keep A\r\nB {'k':[3 4]} 2000"
+    }
+  ],
+  "pairSlices": [
+    {
+      "path": [
+        "blocks",
+        0,
+        "nameSpan"
+      ],
+      "literal": "data_单项"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "pairs",
+        0,
+        "tagSpan"
+      ],
+      "literal": "_only"
+    },
+    {
+      "path": [
+        "blocks",
+        0,
+        "pairs",
+        0,
+        "valueSpan"
+      ],
+      "literal": "'独立'"
+    }
+  ]
+}
