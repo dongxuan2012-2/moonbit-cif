@@ -1,0 +1,8 @@
+﻿#\#CIF_2.0
+data_lab
+loop_
+_sample_id
+_length_m
+_note
+A 1.230(4) ? # old
+_tail 'keep'

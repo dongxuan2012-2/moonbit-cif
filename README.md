@@ -10,7 +10,7 @@
 
 需要 MoonBit；本次验证 moon 0.1.20260920、moonc v0.10.14。Node 运行 JS，moonrun 运行 Wasm-GC。Unicode normalization 是显式的纯 MoonBit 依赖，版本固定在 moon.mod。
 
-GitHub Actions 使用官方 `0.10.14+7d59c7ec9` Linux SDK/core 发行包和 Node.js `24.11.0`；`scripts/setup-ci.sh` 校验固定 SHA256，并仅在 runner 临时目录安装。CI 执行双后端 check/build/test、四个 Lunar 消费者，以及文件预览、HTML 审阅和实际写出后的散列与值核对。每次运行的真实结论见仓库 [Actions](https://github.com/dongxuan2012-2/moonbit-cif/actions)。
+GitHub Actions 使用官方 `0.10.14+7d59c7ec9` Linux SDK/core 发行包和 Node.js `24.11.0`；`scripts/setup-ci.sh` 校验固定 SHA256，并仅在 runner 临时目录安装。CI 执行双后端 check/build/test、四个 Lunar 消费者、追加行的外部 Lunar 接收，以及文件预览、HTML 审阅和实际写出后的散列与值核对。每次运行的真实结论见仓库 [Actions](https://github.com/dongxuan2012-2/moonbit-cif/actions)。
 
 ```sh
 moon check --deny-warn --target js
@@ -46,6 +46,32 @@ moon run . --target wasm-gc
 按ID选择部分行时，用 `file.find_loop_rows("batch", ["_sample_id", "_length_m"], frame="run1")` 取得同一loop的同行原Value，结果列顺序与请求一致。不同loop中等长的两列不能直接推断同行关系。`examples/lunar-selective` 可在JS/Wasm-GC运行：它通过Unicode帧名查询，按ID只计算B/D，保留A/C、块内同名值及另一loop，打印源文、改写结果与原行跨度的JSON。
 
 计算后写入用户说明文字时，先用 `format_string(text, version=file.version)` 编成字符串字面量，再交给 `replace_values`；不要直接拼接引号。`examples/lunar-annotated` 可在JS/Wasm-GC运行，它在同一批中写入B/D的真实Lunar结果和处理说明，包含混合引号、多行分号内容及作为文字的`?`。打印JSON便于读回原文、替换片段及原跨度。
+
+## 向原 loop 追加一条逻辑行
+
+`file.append_loop_row(target, cells, expected_source=source, newline="\r\n")` 返回 `Result[String, String]`。调用者明确选取原 `Entry::Loop`，按原表头顺序传入恰好一行、已经编码的单值片段；说明文字先用 `format_string(text, version=file.version)` 编码。分号文本、跨行字符串及 CIF2 List/Table 各算一个单元格，一条逻辑行可以占多条物理行。
+
+```moonbit
+let file = @cif.parse_string(source).unwrap()
+let target = file.blocks[0].entries[0] // 调用者已明确选择的 loop
+let appended = file.append_loop_row(
+  target, ["B", "2.500(3)", "."], expected_source=source, newline="\r\n",
+).unwrap()
+```
+
+源快照须完全相同，包括 BOM、原换行和未归一化的 Unicode。接口以同版本重新解析有效原文，要求见证的表头、值、词元及跨度恰好匹配唯一实际 loop，且已有行非空完整、表头规范互异；从相同源文另一次解析取得的结构相同见证也等价。它不推断 ID，也不检查新旧 ID 是否重复。
+
+插入点位于最后一个旧值之后，越过原注释与空白，到下一个结构词元之前或 EOF。每个新单元格用所选 LF 或 CRLF 分隔，默认 LF；前缀尚未结束一行时补上该分隔符。所有原字节保持顺序不变，片段内部的原换行也不改写。接口复用单值验证，再验证完整结果及仅增加一行的结构；源文过期、见证不符、宽度错误、夹带额外结构或值外注释、非法编码、最终上下文冲突、既有行长/深度预算超限均返回 Err。文件对象、见证和输入数组不变，只返回完整文本；磁盘写出由调用者负责。
+
+可运行的固定测量交接示例：
+
+```sh
+cd examples/append-row
+moon run . --target js
+node verify.mjs
+```
+
+生产者把 96 字节的 BOM/CRLF 原文中的 A 行保留，在偏移 82 追加独立手写的 16 字节 `B\r\n2.500(3)\r\n.\r\n`，输出完整 112 字节。`verify.mjs` 与事先固定的完整期望及前缀/插入/后缀逐字节比较，实际新建输出、读回，再将 `examples/append-receiver` 复制到 checkout 外的独立 MoonBit 包读取该文件。接收器仅用公共解析/查询/测量 API 和真实 Lunar 依赖，核对两行原序及 B 的值 2.5、不确定度 0.003；米由调用者声明。回执保留文件和编译产物身份。这是运行时交接示例，尚无实际实验室请求或外部采用证据；文件工作流的既有计划和命令不变。
 
 ## 任意本地文件的查询与批量写出
 

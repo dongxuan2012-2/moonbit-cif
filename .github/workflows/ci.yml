@@ -49,6 +49,9 @@ jobs:
         run: |
           moon run . --target js
           moon run . --target wasm-gc
+      - name: Append row external Lunar recipient
+        working-directory: examples/append-row
+        run: node verify.mjs
       - name: Local file workflow
         working-directory: examples/file-workflow
         run: |
