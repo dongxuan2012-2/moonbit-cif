@@ -1,0 +1,7 @@
+import {
+  "moonbitlang/core/encoding/utf8",
+  "moonbitlang/core/string",
+  "moonbitlang/core/math",
+  "moonbitlang/core/bigint",
+  "moonbit-community/normalization",
+}

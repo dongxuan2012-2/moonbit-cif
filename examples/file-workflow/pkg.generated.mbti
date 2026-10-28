@@ -1,0 +1,13 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dongxuan2012/cif-file-workflow-example"
+
+// Values
+
+// Errors
+type WorkflowError
+
+// Types and methods
+
+// Type aliases
+
+// Traits

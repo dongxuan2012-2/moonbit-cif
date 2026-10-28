@@ -1,0 +1,9 @@
+{
+  "block": "lab",
+  "frame": "run1",
+  "idTag": "_sample_id",
+  "columns": [
+    "_length_m",
+    "_note"
+  ]
+}

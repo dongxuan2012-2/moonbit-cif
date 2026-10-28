@@ -1,0 +1,32 @@
+{
+  "block": "lab",
+  "frame": "run1",
+  "idTag": "_sample_id",
+  "columns": [
+    "_length_m",
+    "_note"
+  ],
+  "sourceSha256": "fbfc7bb52f60f540063b2752bc93efe51dc3e4e92cffd9d3453dedf5484c5759",
+  "edits": [
+    {
+      "id": "B",
+      "tag": "_length_m",
+      "cif": "4.200(60)"
+    },
+    {
+      "id": "B",
+      "tag": "_note",
+      "text": "processed B"
+    },
+    {
+      "id": "D",
+      "tag": "_length_m",
+      "cif": "6.660(80)"
+    },
+    {
+      "id": "D",
+      "tag": "_note",
+      "text": "?"
+    }
+  ]
+}

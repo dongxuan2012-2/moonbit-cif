@@ -1,0 +1,12 @@
+#\#CIF_2.0
+data_lab
+_length 1.5423(12)
+_note "literal\n"
+_values [1 ? . [2 3] {"key":4}]
+_triple """first
+second"""
+loop_
+_atom
+_x
+C 0.25
+O 0.5

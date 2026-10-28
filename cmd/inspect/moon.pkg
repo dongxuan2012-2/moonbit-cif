@@ -1,0 +1,6 @@
+import {
+  "dongxuan2012/cif",
+  "moonbitlang/core/env",
+}
+
+pkgtype(kind: "executable")

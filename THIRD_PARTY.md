@@ -1,0 +1,13 @@
+# Sources and licenses
+
+The handwritten parser, model, streaming/source-edit code and CIF-specific measurement bridge are MIT (LICENSE). No generic measurement propagation, group operations, symmetry tables, or upstream parser code was copied into the core.
+
+- `moonbit-community/normalization@0.5.2`: Unicode normalization implementation, Apache-2.0, via Mooncakes; transitively uses `moonbit-community/ucd@0.5.2` Unicode 16 data. Preserve upstream notices in dependency distributions. https://github.com/moonbit-community/tonyfettes-unicode
+- `casefold_generated.mbt`: generated C/F full default casefold mappings from Unicode 16.0.0 `https://www.unicode.org/Public/16.0.0/ucd/CaseFolding.txt`, under Unicode License V3 (`UNICODE-LICENSE.txt`). Data are not counted as handwritten original implementation. Generator `scripts/generate_casefold.py` is MIT; normalization is reused, not recreated.
+- Optional `examples/lunar`: actually imports `FrozenLemonTee/LunarUncertainty@0.1.1` and `FrozenLemonTee/LunarUnits@0.1.7`, Apache-2.0. It uses checked construction and `scale`; unit selection and absent-su policy are explicit. Its model/limitations belong to those libraries. Their source remains dependencies, not original CIF code.
+- `fixtures/lab.cif` and `legacy.cif`: original small verification inputs, MIT.
+- `fixtures/cod-2002926.cif`: COD entry 2002926, revision 301791, snapshot SHA256 e715b2c0142755d3fae960d3060a4f09f954c01f691b5051a3f9e20ff559d1ca. COD CC0 dedication: https://cod.psdi.ac.uk/ . Original header and author credit retained: Srivastava, Klooster & Koetzle, Acta Cryst B 55, 17–23, DOI 10.1107/S010876819800737X. Data are not MIT software.
+- Reference-only COMCIFS/cif_api commit `7882c1244bb4f69607561448ac82346f6637015f`: test-data and C test expectations are LGPL-3.0-or-later (John C. Bollinger), excluding cif_core.dic, which has separate IUCr ownership. Downloaded into the external report/reference directory; not included as core source or MIT fixtures. `scripts/fetch_reference.py` retains test-data/README. This is a reference implementation's test material, not a certified full official compliance suite.
+- Reference-only PyCifRW 5.0.1: Python/PSF 2.0 license per distribution LICENSE. Independent oracle installed outside product. Its numpy/ply/prettytable dependencies retain their own licenses; not runtime dependencies of this library. No PyCifRW parser implementation was translated.
+
+Specification: Bernstein et al., J. Appl. Cryst. 49 (2016) 277–284, DOI 10.1107/S1600576715021871. Reading or implementing this standard does not make its published text/dictionaries MIT. Full DDL/dREL and mmCIF dictionary validation are outside this library. Error codes and recovery policy are this project's API, not IUCr standard codes.

@@ -1,0 +1,81 @@
+name: CIF library
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.11.0'
+      - name: Install pinned official MoonBit release
+        run: bash scripts/setup-ci.sh
+      - name: Resolve pinned public dependencies
+        run: moon update
+      - name: Runtime and source identity
+        run: |
+          node --version
+          moon version --all
+          git rev-parse HEAD
+      - run: moon check --deny-warn --target js
+      - run: moon build --deny-warn --target js
+      - run: moon test --deny-warn --target js
+      - run: moon check --deny-warn --target wasm-gc
+      - run: moon build --deny-warn --target wasm-gc
+      - run: moon test --deny-warn --target wasm-gc
+      - name: Consumer bridge
+        working-directory: examples/lunar
+        run: |
+          moon run . --target js
+          moon run . --target wasm-gc
+      - name: Batch consumer bridge
+        working-directory: examples/lunar-batch
+        run: |
+          moon run . --target js
+          moon run . --target wasm-gc
+      - run: moon fmt && moon info && git diff --exit-code
+      - name: Selective row consumer
+        working-directory: examples/lunar-selective
+        run: |
+          moon run . --target js
+          moon run . --target wasm-gc
+      - name: Annotated calculation consumer
+        working-directory: examples/lunar-annotated
+        run: |
+          moon run . --target js
+          moon run . --target wasm-gc
+      - name: Local file workflow
+        working-directory: examples/file-workflow
+        run: |
+          moon run . --target js -- catalog sample.cif
+          moon run . --target js -- query sample.cif scope.json
+          mkdir -p work
+          moon run . --target js -- preview sample.cif sample-plan.json > work/sample.preview.json
+          node review-preview.mjs work/sample.preview.json work/sample.review.html --source sample.cif
+          expected_result_sha=$(node -p "JSON.parse(require('node:fs').readFileSync('work/sample.preview.json', 'utf8')).planned.sha256")
+          moon run . --target js -- apply sample.cif sample-plan.json work/sample.output.cif --expect-result-sha256 "$expected_result_sha"
+          moon run . --target js -- query work/sample.output.cif scope.json > work/sample.query.json
+          node <<'NODE'
+          const assert = require('node:assert/strict');
+          const fs = require('node:fs');
+          const { createHash } = require('node:crypto');
+          const forecast = JSON.parse(fs.readFileSync('work/sample.preview.json', 'utf8'));
+          const query = JSON.parse(fs.readFileSync('work/sample.query.json', 'utf8'));
+          const plan = JSON.parse(fs.readFileSync('sample-plan.json', 'utf8'));
+          const digest = name => createHash('sha256').update(fs.readFileSync(name)).digest('hex');
+          assert.equal(digest('sample.cif'), plan.sourceSha256);
+          assert.equal(digest('work/sample.output.cif'), forecast.planned.sha256);
+          assert.equal(query.sourceSha256, forecast.planned.sha256);
+          assert.deepEqual(query.rows.map(row => row.map(cell => cell.value)), [
+            ['A', '1.200(5)', 'keep A'],
+            ['B', '4.200(60)', 'processed B'],
+            ['C', '?', 'keep C'],
+            ['D', '6.660(80)', '?'],
+          ]);
+          assert.equal(query.rows[3][2].kind, 'string');
+          NODE

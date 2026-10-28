@@ -1,0 +1,7 @@
+import {
+  "dongxuan2012/cif",
+  "FrozenLemonTee/LunarUncertainty/measure",
+  "FrozenLemonTee/LunarUnits/units/si",
+}
+
+pkgtype(kind: "executable")

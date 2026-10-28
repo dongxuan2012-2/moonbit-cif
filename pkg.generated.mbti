@@ -1,0 +1,173 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dongxuan2012/cif"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn format_string(String, version? : Version) -> Result[String, String]
+
+pub fn format_su(Double, Double, digits? : Int) -> Result[String, String]
+
+pub fn inspect_json(String) -> Json
+
+pub fn parse_report(String, version? : Version) -> ParseReport
+
+pub fn parse_string(String, version? : Version) -> Result[CifFile, Array[CifDiagnostic]]
+
+pub fn parse_su(String) -> Result[SuReal, String]
+
+// Errors
+
+// Types and methods
+pub(all) struct CifDiagnostic {
+  code : String
+  message : String
+  span : Span
+} derive(Eq, ToJson, @debug.Debug)
+pub fn CifDiagnostic::equal(Self, Self) -> Bool
+pub fn CifDiagnostic::not_equal(Self, Self) -> Bool
+pub fn CifDiagnostic::to_json(Self) -> Json
+pub fn CifDiagnostic::to_repr(Self) -> @debug.Repr
+
+pub(all) struct CifFile {
+  source : String
+  tokens : Array[Token]
+  blocks : Array[Container]
+  version : Version
+} derive(Eq, @debug.Debug)
+pub fn CifFile::equal(Self, Self) -> Bool
+pub fn CifFile::find(Self, String, String) -> Value?
+pub fn CifFile::find_loop_rows(Self, String, Array[String], frame? : String) -> Result[Array[Array[Value]], String]
+pub fn CifFile::find_values(Self, String, String, frame? : String) -> Array[Value]
+pub fn CifFile::not_equal(Self, Self) -> Bool
+pub fn CifFile::replace_value(Self, Value, String) -> Result[String, String]
+pub fn CifFile::replace_values(Self, Array[(Value, String)]) -> Result[String, String]
+pub fn CifFile::rewrite_original(Self) -> String
+pub fn CifFile::to_repr(Self) -> @debug.Repr
+
+pub struct CifParser {
+} derive(@debug.Debug)
+pub fn CifParser::new() -> Self
+pub fn CifParser::parse_string(String) -> Result[CifFile, Array[CifDiagnostic]]
+pub fn CifParser::to_repr(Self) -> @debug.Repr
+
+pub struct CifStream {
+  bytes : Array[Byte]
+  mut emitted : Int
+  mut closed : Bool
+  version : Version
+  max_bytes : Int
+} derive(@debug.Debug)
+pub fn CifStream::feed(Self, Bytes) -> Result[Array[Token], String]
+pub fn CifStream::finish(Self) -> Result[ParseReport, String]
+pub fn CifStream::new(version? : Version, max_bytes? : Int) -> Self
+pub fn CifStream::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Container {
+  name : Token
+  entries : Array[Entry]
+  frames : Array[Container]
+} derive(Eq, @debug.Debug)
+pub fn Container::equal(Self, Self) -> Bool
+pub fn Container::find_loop_rows(Self, Array[String]) -> Result[Array[Array[Value]], String]
+pub fn Container::find_values(Self, String) -> Array[Value]
+pub fn Container::not_equal(Self, Self) -> Bool
+pub fn Container::to_repr(Self) -> @debug.Repr
+
+pub(all) enum Entry {
+  Pair(Token, Value)
+  Loop(Array[Token], Array[Value], Span)
+} derive(Eq, @debug.Debug)
+pub fn Entry::equal(Self, Self) -> Bool
+pub fn Entry::not_equal(Self, Self) -> Bool
+pub fn Entry::to_repr(Self) -> @debug.Repr
+
+pub(all) struct ParseReport {
+  file : CifFile
+  diagnostics : Array[CifDiagnostic]
+  raw_data : Array[Token]
+} derive(@debug.Debug)
+pub fn ParseReport::is_valid(Self) -> Bool
+pub fn ParseReport::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Span {
+  start_line : Int
+  start_col : Int
+  end_line : Int
+  end_col : Int
+  start_offset : Int
+  end_offset : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn Span::equal(Self, Self) -> Bool
+pub fn Span::not_equal(Self, Self) -> Bool
+pub fn Span::to_json(Self) -> Json
+pub fn Span::to_repr(Self) -> @debug.Repr
+
+pub(all) struct SuReal {
+  lexeme : String
+  value : Double?
+  uncertainty : Double?
+  uncertainty_digits : String?
+  is_unknown : Bool
+  is_inapplicable : Bool
+} derive(@debug.Debug)
+pub fn[S : UncertaintySink] SuReal::send_to(Self, S) -> Result[Unit, String]
+pub fn SuReal::to_cif_string(Self) -> String
+pub fn SuReal::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Token {
+  kind : TokenKind
+  raw : String
+  text : String
+  span : Span
+} derive(Eq, @debug.Debug)
+pub fn Token::equal(Self, Self) -> Bool
+pub fn Token::not_equal(Self, Self) -> Bool
+pub fn Token::to_repr(Self) -> @debug.Repr
+
+pub(all) enum TokenKind {
+  Word
+  Quoted
+  Triple
+  Text
+  OpenList
+  CloseList
+  OpenTable
+  CloseTable
+  Colon
+  Trivia
+  Comment
+} derive(Eq, @debug.Debug)
+pub fn TokenKind::equal(Self, Self) -> Bool
+pub fn TokenKind::not_equal(Self, Self) -> Bool
+pub fn TokenKind::to_repr(Self) -> @debug.Repr
+
+pub(all) enum Value {
+  Scalar(Token)
+  List(Array[Value], Span)
+  Table(Array[(Token, Value)], Span)
+} derive(Eq, @debug.Debug)
+pub fn Value::equal(Self, Self) -> Bool
+pub fn Value::measurement(Self) -> Result[SuReal, String]
+pub fn Value::not_equal(Self, Self) -> Bool
+pub fn Value::span(Self) -> Span
+pub fn Value::to_json(Self) -> Json
+pub fn Value::to_repr(Self) -> @debug.Repr
+
+pub(all) enum Version {
+  Auto
+  Cif1
+  Cif2
+} derive(Eq, @debug.Debug)
+pub fn Version::equal(Self, Self) -> Bool
+pub fn Version::not_equal(Self, Self) -> Bool
+pub fn Version::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits
+pub(open) trait UncertaintySink {
+  fn accept(Self, Double, Double?) -> Unit
+}
