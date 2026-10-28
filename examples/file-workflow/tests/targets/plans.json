@@ -1,0 +1,92 @@
+{
+  "missing-id": {
+    "block": "TARGETS",
+    "idTag": "_ID",
+    "sourceSha256": "576c9c6ab132d5e26e02150107b630e1d5e1f723f26d06720fd8e464f66503f5",
+    "edits": [
+      {
+        "id": "A",
+        "tag": "_VALUE",
+        "cif": "11"
+      },
+      {
+        "id": "missing",
+        "tag": "_VALUE",
+        "cif": "99"
+      }
+    ]
+  },
+  "ambiguous-id": {
+    "block": "TARGETS",
+    "idTag": "_ID",
+    "sourceSha256": "576c9c6ab132d5e26e02150107b630e1d5e1f723f26d06720fd8e464f66503f5",
+    "edits": [
+      {
+        "id": "A",
+        "tag": "_VALUE",
+        "cif": "11"
+      },
+      {
+        "id": "dup",
+        "tag": "_VALUE",
+        "cif": "99"
+      }
+    ]
+  },
+  "invalid-later-value": {
+    "block": "TARGETS",
+    "idTag": "_ID",
+    "sourceSha256": "576c9c6ab132d5e26e02150107b630e1d5e1f723f26d06720fd8e464f66503f5",
+    "edits": [
+      {
+        "id": "A",
+        "tag": "_VALUE",
+        "cif": "11"
+      },
+      {
+        "id": "a",
+        "tag": "_VALUE",
+        "cif": "22 23"
+      }
+    ]
+  },
+  "valid-prefix": {
+    "block": "TARGETS",
+    "idTag": "_ID",
+    "sourceSha256": "576c9c6ab132d5e26e02150107b630e1d5e1f723f26d06720fd8e464f66503f5",
+    "edits": [
+      {
+        "id": "A",
+        "tag": "_VALUE",
+        "cif": "11"
+      }
+    ]
+  },
+  "valid-selection": {
+    "block": "TARGETS",
+    "idTag": "_ID",
+    "sourceSha256": "576c9c6ab132d5e26e02150107b630e1d5e1f723f26d06720fd8e464f66503f5",
+    "edits": [
+      {
+        "id": "A",
+        "tag": "_VALUE",
+        "cif": "11"
+      },
+      {
+        "id": "a",
+        "tag": "_VALUE",
+        "cif": "22"
+      },
+      {
+        "id": "?",
+        "tag": "_VALUE",
+        "cif": "66"
+      },
+      {
+        "id": ".",
+        "tag": "_VALUE",
+        "cif": "88"
+      }
+    ]
+  }
+}

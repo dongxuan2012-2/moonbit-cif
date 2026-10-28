@@ -1,0 +1,14 @@
+#\#CIF_2.0
+data_targets
+loop_
+_id
+_value
+A 11 # upper
+a 22 # lower
+dup 30
+dup 40
+? 50
+'?' 66
+. 70
+'.' 88
+[A] 90

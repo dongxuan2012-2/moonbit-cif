@@ -85,3 +85,6 @@ jobs:
       - name: Saved preview consumer contracts
         working-directory: examples/file-workflow
         run: node tests/saved-preview.mjs
+      - name: File plan target validation contracts
+        working-directory: examples/file-workflow
+        run: node tests/plan-targets.mjs

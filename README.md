@@ -105,6 +105,8 @@ node review-preview.mjs work/sample.preview.json work/sample.context.html --sour
 
 同目录运行`node tests/saved-preview.mjs`可验证保存预览的独立HTML消费者。回归以固定BOM/CRLF、中文UTF-8及手写完整预计字节和转义上下文为预期，检查`--source`下的源散列、预计散列/字节数、重叠拒绝、同一行多项修改的组合上下文，以及离线两参数模式。非法保存件不创建页面、不更改已有页面或源CIF；合法保存件也沿用页面必须为新路径的现有约束。成功回执仍为`writesCifFiles:false`、`approvesEdits:false`。这是实际进程/文件和HTML内容回归，不表示浏览器视觉认证；CI执行同一命令。
 
+`node tests/plan-targets.mjs`通过真实文件CLI验证保存计划的目标选择与整批拒绝。固定小CIF和JSON计划覆盖缺失/歧义ID、合法前项后的非法CIF值，以及已有目标时的文件保护；合法单项和四ID对照均与独立手写的完整输出字节比较。样本保持`A/a`区分、引用`?/.`可作ID而裸缺失标记不作ID、复合值不展平等原语义。测试不传预计结果散列选项，直接核计划拒绝、磁盘回执和文件/目录前后字节；CI执行同一命令，不新增生产输入限制。
+
 ## 公共库用法
 
 ```moonbit
