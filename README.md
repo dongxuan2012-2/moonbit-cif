@@ -103,6 +103,8 @@ node review-preview.mjs work/sample.preview.json work/sample.context.html --sour
 
 在`examples/file-workflow`运行`node tests/output-preservation.mjs`可验证文件保护合同（需要MoonBit和Node.js≥22.3）。回归启动真实CLI，检查源散列过期、预计结果散列不符和已有输出路径时的退出码、JSON及调用前后文件字节；合法对照与独立手写的完整CIF预期逐字节比较，并核对磁盘回执。测试仅使用`work/`内新建的临时目录，成功后清理；GitHub Actions执行同一回归。
 
+同目录运行`node tests/saved-preview.mjs`可验证保存预览的独立HTML消费者。回归以固定BOM/CRLF、中文UTF-8及手写完整预计字节和转义上下文为预期，检查`--source`下的源散列、预计散列/字节数、重叠拒绝、同一行多项修改的组合上下文，以及离线两参数模式。非法保存件不创建页面、不更改已有页面或源CIF；合法保存件也沿用页面必须为新路径的现有约束。成功回执仍为`writesCifFiles:false`、`approvesEdits:false`。这是实际进程/文件和HTML内容回归，不表示浏览器视觉认证；CI执行同一命令。
+
 ## 公共库用法
 
 ```moonbit

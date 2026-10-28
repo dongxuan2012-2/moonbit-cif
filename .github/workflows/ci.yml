@@ -82,3 +82,6 @@ jobs:
       - name: File output preservation contracts
         working-directory: examples/file-workflow
         run: node tests/output-preservation.mjs
+      - name: Saved preview consumer contracts
+        working-directory: examples/file-workflow
+        run: node tests/saved-preview.mjs

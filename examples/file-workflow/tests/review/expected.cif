@@ -1,0 +1,8 @@
+﻿#\#CIF_2.0
+data_review
+loop_
+_id
+_note
+_count
+甲 '<longer&"new">' 23 # keep <&>
+# tail ">&'

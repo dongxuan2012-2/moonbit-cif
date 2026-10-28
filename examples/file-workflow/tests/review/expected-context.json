@@ -1,0 +1,18 @@
+{
+  "source": [
+    "_count&#13;\n甲 &#39;&lt;old&amp;&quot;x&quot;&gt;&#39; <mark>1</mark> # keep &lt;&amp;&gt;&#13;\n# tail &quot;&gt;&amp;&#39;&#13;\n",
+    "_count&#13;\n甲 <mark>&#39;&lt;old&amp;&quot;x&quot;&gt;&#39;</mark> 1 # keep &lt;&amp;&gt;&#13;\n# tail &quot;&gt;&amp;&#39;&#13;\n"
+  ],
+  "planned": [
+    "_count&#13;\n甲 &#39;&lt;longer&amp;&quot;new&quot;&gt;&#39; <mark>23</mark> # keep &lt;&amp;&gt;&#13;\n# tail &quot;&gt;&amp;&#39;&#13;\n",
+    "_count&#13;\n甲 <mark>&#39;&lt;longer&amp;&quot;new&quot;&gt;&#39;</mark> 23 # keep &lt;&amp;&gt;&#13;\n# tail &quot;&gt;&amp;&#39;&#13;\n"
+  ],
+  "originals": [
+    "1",
+    "&#39;&lt;old&amp;&quot;x&quot;&gt;&#39;"
+  ],
+  "replacements": [
+    "23",
+    "&#39;&lt;longer&amp;&quot;new&quot;&gt;&#39;"
+  ]
+}
