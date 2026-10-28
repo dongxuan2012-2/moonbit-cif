@@ -21,6 +21,8 @@ printf '%s  %s\n' "$sdk_sha" "$sdk_archive" | sha256sum --check --status
 printf '%s  %s\n' "$core_sha" "$core_archive" | sha256sum --check --status
 tar -xzf "$sdk_archive" -C "$MOON_HOME"
 tar -xzf "$core_archive" -C "$MOON_HOME/lib"
+# Release archives omit executable bits; match the official Unix installer.
+chmod +x "$MOON_HOME"/bin/* "$MOON_HOME/bin/internal/tcc"
 export PATH="$MOON_HOME/bin:$PATH"
 (
   cd "$MOON_HOME/lib/core"
