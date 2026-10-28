@@ -1,0 +1,13 @@
+#\#CIF_2.0
+data_lab
+_length_m 9.999(1)
+save_run1
+loop_
+_sample_id
+_length_m
+_note
+A 1.200(5) 'keep A'
+B 4.200(60) 'processed B' # retain this comment
+C ? 'keep C'
+D 6.660(80) '?'
+save_

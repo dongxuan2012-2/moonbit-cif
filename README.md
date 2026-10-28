@@ -101,6 +101,8 @@ node review-preview.mjs work/sample.preview.json work/sample.context.html --sour
 
 输出路径必须尚不存在，不能原地覆盖；程序独占创建、写入/刷新、逐字节回读并返回实际SHA256。输入文件始终不写入，未选字节及BOM/CRLF不归一化。失败返回非零退出码和`ok:false`的JSON；处理中的新输出会尝试清理，清理失败会写明。它不承诺崩溃原子性、并发编辑锁或gzip输入。编译一次后可从任意工作目录运行生成的JS：`node /absolute/path/to/main.js query /absolute/input.cif /absolute/scope.json`；生成路径见`moon build --target js`后的`_build/js/debug/build/`。
 
+在`examples/file-workflow`运行`node tests/output-preservation.mjs`可验证文件保护合同（需要MoonBit和Node.js≥22.3）。回归启动真实CLI，检查源散列过期、预计结果散列不符和已有输出路径时的退出码、JSON及调用前后文件字节；合法对照与独立手写的完整CIF预期逐字节比较，并核对磁盘回执。测试仅使用`work/`内新建的临时目录，成功后清理；GitHub Actions执行同一回归。
+
 ## 公共库用法
 
 ```moonbit

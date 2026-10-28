@@ -79,3 +79,6 @@ jobs:
           ]);
           assert.equal(query.rows[3][2].kind, 'string');
           NODE
+      - name: File output preservation contracts
+        working-directory: examples/file-workflow
+        run: node tests/output-preservation.mjs
