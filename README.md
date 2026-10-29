@@ -73,6 +73,20 @@ node verify.mjs
 
 生产者把 96 字节的 BOM/CRLF 原文中的 A 行保留，在偏移 82 追加独立手写的 16 字节 `B\r\n2.500(3)\r\n.\r\n`，输出完整 112 字节。`verify.mjs` 与事先固定的完整期望及前缀/插入/后缀逐字节比较，实际新建输出、读回，再将 `examples/append-receiver` 复制到 checkout 外的独立 MoonBit 包读取该文件。接收器仅用公共解析/查询/测量 API 和真实 Lunar 依赖，核对两行原序及 B 的值 2.5、不确定度 0.003；米由调用者声明。回执保留文件和编译产物身份。这是运行时交接示例，尚无实际实验室请求或外部采用证据；文件工作流的既有计划和命令不变。
 
+## 移除一条明确选择的原记录
+
+`file.remove_loop_row(target, row, expected_source=source)` 返回 `Result[String, String]`，`row` 是所选原 loop 的零起始逻辑行索引。源快照须完全相同；`target` 是与有效同版本原文唯一匹配的完整 `Entry::Loop` 结构见证，相同源文另一次解析得到的等价见证也可使用。索引须在范围内，删除后须至少保留一条完整行；接口不猜 ID、不决定哪些记录应剔除。
+
+```moonbit
+let file = @cif.parse_string(source).unwrap()
+let target = file.blocks[0].frames[0].entries[0] // 调用者已选定的原 loop
+let curated = file.remove_loop_row(target, 1, expected_source=source).unwrap()
+```
+
+仅删除所选行各个顶层 Value 的 UTF-8 区间，其余所有字节按原序保留，不添加分隔符。单元格内的引号、跨行文本、复合值及复合值内注释属于删除范围；范围外空白和注释保留，因此可能留下空行或只有注释的行。一条逻辑行不等于一条物理行，也不会据此裁掉整条物理行。最终同版本解析检查保留的原词元/值、映射后的字节位置和仅减一行的结构；删除跨行值造成保留内容拼成超长行等上下文/预算错误时返回 Err。源文件对象和见证不变，返回完整文本或错误，不执行磁盘写入。
+
+在 `examples/curate-loop` 运行 `node verify.mjs` 可重放真实文件接收。生产者从传入路径读取 CIF，按示例中明确的已知布局/索引剔除记录；验证脚本写入新文件并读回，再交给 checkout 外的公共 API/真实 Lunar 接收器。独立手写 CIF2 样本240→210字节，保留范围外的注释和 A/C 的2/u0.01、4/u0.02；CIF1样本87→61字节，移除带分号文本的X行并保留Y的1.25/u0.005。米及剔除策略由调用者声明，库不判定异常值。另一个输入变体核对无关原字段也保留，生产者没有回放固定输出。此例不新增文件工作流命令或通用计划；自编接收器不代表第三方采用。
+
 ## 任意本地文件的查询与批量写出
 
 `examples/file-workflow` 是独立的 Node.js >=22.3 / JS 命令行例程，通过文件路径读取UTF-8 CIF1/CIF2和JSON计划，输入内容不放进命令行参数。核心库仍支持JS/Wasm-GC；旧`cmd/inspect`仍接收文本。

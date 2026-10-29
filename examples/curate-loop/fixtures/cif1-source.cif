@@ -1,0 +1,10 @@
+data_one
+loop_
+_id
+_length_m
+_note
+X 8.000(30)
+;rejected
+text
+;
+Y 1.250(5) . # stay EOF

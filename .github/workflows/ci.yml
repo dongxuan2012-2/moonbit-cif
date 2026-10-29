@@ -97,3 +97,6 @@ jobs:
       - name: Append arbitrary file and external Lunar receiver
         working-directory: examples/file-workflow
         run: node tests/append-file.mjs
+      - name: Curated row removal and external Lunar receiver
+        working-directory: examples/curate-loop
+        run: node verify.mjs

@@ -1,0 +1,95 @@
+{
+  "cif2": {
+    "sourceBytes": 240,
+    "sourceSha256": "ffcb3841d749b65d655f1526c0dacd7498f4c887fbdc27f07ddf5baad03b53f4",
+    "outputBytes": 210,
+    "outputSha256": "07bb71465b1d8e37137401a6299bdf1378160f4894dd0660f784adab930c0262",
+    "ranges": [
+      [
+        106,
+        107
+      ],
+      [
+        108,
+        117
+      ],
+      [
+        118,
+        126
+      ],
+      [
+        127,
+        139
+      ]
+    ],
+    "removedBytes": 30,
+    "rowIndex": 1,
+    "rowsBefore": 3,
+    "rowsAfter": 2,
+    "loopSpanBefore": [
+      50,
+      184
+    ],
+    "loopSpanAfter": [
+      50,
+      154
+    ],
+    "retainedMeasurements": [
+      {
+        "id": "A",
+        "value": 2.0,
+        "uncertainty": 0.01
+      },
+      {
+        "id": "C",
+        "value": 4.0,
+        "uncertainty": 0.02
+      }
+    ],
+    "unitChosenByCaller": "m",
+    "tailBefore": 186,
+    "tailAfter": 156,
+    "otherBlockBefore": 212,
+    "otherBlockAfter": 182
+  },
+  "cif1": {
+    "sourceBytes": 87,
+    "sourceSha256": "64722b710de65853b89a71442a8a9624f1de89d984fefdeab8d88cf1101f73c6",
+    "outputBytes": 61,
+    "outputSha256": "1e84aaf245bd803de6a5840bfd4d7ba8d995448d4289f4a4ebe3dc5cd53d4135",
+    "ranges": [
+      [
+        35,
+        36
+      ],
+      [
+        37,
+        46
+      ],
+      [
+        47,
+        63
+      ]
+    ],
+    "removedBytes": 26,
+    "rowIndex": 0,
+    "rowsBefore": 2,
+    "rowsAfter": 1,
+    "loopSpanBefore": [
+      9,
+      76
+    ],
+    "loopSpanAfter": [
+      9,
+      50
+    ],
+    "retainedMeasurements": [
+      {
+        "id": "Y",
+        "value": 1.25,
+        "uncertainty": 0.005
+      }
+    ],
+    "unitChosenByCaller": "m"
+  }
+}

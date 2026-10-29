@@ -1,0 +1,16 @@
+﻿#\#CIF_2.0
+data_curate
+_root keep
+save_run
+loop_
+_id
+_length_m
+_note
+_meta
+A 2.000(10) ? [1]
+    # retain annotation
+C 4.000(20) "keep C" []
+_tail {'k':[1 2]}
+save_
+data_other
+_x 'untouched'

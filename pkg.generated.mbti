@@ -43,6 +43,7 @@ pub fn CifFile::find(Self, String, String) -> Value?
 pub fn CifFile::find_loop_rows(Self, String, Array[String], frame? : String) -> Result[Array[Array[Value]], String]
 pub fn CifFile::find_values(Self, String, String, frame? : String) -> Array[Value]
 pub fn CifFile::not_equal(Self, Self) -> Bool
+pub fn CifFile::remove_loop_row(Self, Entry, Int, expected_source~ : String) -> Result[String, String]
 pub fn CifFile::replace_value(Self, Value, String) -> Result[String, String]
 pub fn CifFile::replace_values(Self, Array[(Value, String)]) -> Result[String, String]
 pub fn CifFile::rewrite_original(Self) -> String
