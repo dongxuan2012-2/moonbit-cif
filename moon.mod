@@ -1,6 +1,8 @@
-name = "dongxuan2012/cif"
+name = "dongxuan2012-2/cif"
 
 version = "0.1.0"
+
+repository = "https://github.com/dongxuan2012-2/moonbit-cif"
 
 license = "MIT"
 

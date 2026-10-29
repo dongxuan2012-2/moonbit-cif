@@ -1,5 +1,5 @@
 import {
-  "dongxuan2012/cif",
+  "dongxuan2012-2/cif",
   "FrozenLemonTee/LunarUncertainty/measure",
   "FrozenLemonTee/LunarUnits/units/si",
 }

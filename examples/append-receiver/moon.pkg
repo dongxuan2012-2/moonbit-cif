@@ -1,5 +1,5 @@
 import {
-  "dongxuan2012/cif",
+  "dongxuan2012-2/cif",
   "moonbitlang/core/env",
   "moonbitlang/core/encoding/utf8",
   "FrozenLemonTee/LunarUncertainty/measure",

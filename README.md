@@ -1,14 +1,14 @@
 # moonbit-cif
 
-原生 MoonBit CIF 1.1 / CIF 2.0 源码保真解析、标准不确定度词元和诊断库。模块 `dongxuan2012/cif`，候选项目，本地可用，尚未发布 Mooncakes，也不表示换题或赛事验收获批。
+原生 MoonBit CIF 1.1 / CIF 2.0 源码保真解析、标准不确定度词元和诊断库。模块标识为 `dongxuan2012-2/cif`，版本 0.1.0，支持 JS 与 Wasm-GC。
 
-源码仓库：[dongxuan2012-2/moonbit-cif](https://github.com/dongxuan2012-2/moonbit-cif)。模块名和原作者署名保持不变。
+源码仓库：[dongxuan2012-2/moonbit-cif](https://github.com/dongxuan2012-2/moonbit-cif)。当前维护及申报账号为 [dongxuan2012-2](https://github.com/dongxuan2012-2)；软件版权、依赖作者和数据来源分别按 [LICENSE](LICENSE) 与 [THIRD_PARTY.md](THIRD_PARTY.md) 保留。
 
-把 CIF 输入变成可定位的嵌套值/表格，提取 `1.5423(12)`，把外部计算结果只替换回指定值，并保留其余字节、注释、引号和换行。核心不实现通用误差传播或230空间群；现有库的作者不是本项目参赛者。
+把 CIF 输入变成可定位的嵌套值/表格，提取 `1.5423(12)`，把外部计算结果只替换回指定值，并保留其余字节、注释、引号和换行。核心负责 CIF 语法、原跨度和词元桥接；通用误差传播由外部库负责，晶体空间群运算属于其他领域工具。
 
 ## 运行
 
-需要 MoonBit；本次验证 moon 0.1.20260920、moonc v0.10.14。Node 运行 JS，moonrun 运行 Wasm-GC。Unicode normalization 是显式的纯 MoonBit 依赖，版本固定在 moon.mod。
+使用 MoonBit 工具链：moon 0.1.20260920、moonc 0.10.14。Node 运行 JS，moonrun 运行 Wasm-GC；文件例程要求 Node.js≥22.3。Unicode normalization 是显式的纯 MoonBit 依赖，版本固定在 moon.mod。
 
 GitHub Actions 使用官方 `0.10.14+7d59c7ec9` Linux SDK/core 发行包和 Node.js `24.11.0`；`scripts/setup-ci.sh` 校验固定 SHA256，并仅在 runner 临时目录安装。CI 执行双后端 check/build/test、四个 Lunar 消费者、追加行的外部 Lunar 接收，以及文件预览、HTML 审阅和实际写出后的散列与值核对。每次运行的真实结论见仓库 [Actions](https://github.com/dongxuan2012-2/moonbit-cif/actions)。
 
@@ -19,17 +19,17 @@ moon test --deny-warn --target js
 moon check --deny-warn --target wasm-gc
 moon build --deny-warn --target wasm-gc
 moon test --deny-warn --target wasm-gc
-moon run cmd/demo
+moon run cmd/demo --target js
 ```
 
 PowerShell 检视真实文件（最后一个参数是文本，不是路径）：
 
 ```powershell
-$text = Get-Content -LiteralPath fixtures/cod-2002926.cif -Raw
+$text = Get-Content -LiteralPath examples/file-workflow/sample.cif -Raw -Encoding UTF8
 moon run cmd/inspect --target js -- $text
 ```
 
-外部库接入示例是独立模块，workspace连接本地库，不依赖尚未发布的远程 cif 包：
+外部库接入示例是独立模块，通过各自的 `moon.work` 引用本地库。自有工程的 `moon.mod` 引用 `dongxuan2012-2/cif@0.1.0`，`moon.pkg` 导入 `dongxuan2012-2/cif`，并在 `moon.work` 中加入此仓库路径；完整配置见 `examples/value-reader`。源码分发与接入命令如下：
 
 ```sh
 cd examples/lunar
@@ -243,11 +243,13 @@ Span是原UTF-8字节的半开区间；行列从1起，列计Unicode标量，tab
 
 恢复保留不完整loop的全部值，不补齐单元格；按已识别词元在下一数据名/数据块继续，字符串内部的data_不会被当同步点。未闭合文本会吃到EOF并报告，不猜测作者本意。最多收集100条诊断。嵌套预算按Value层数计：根值为第1层，标量叶也占1层，最多128层；此计数规则及限制未改变。流默认16MiB的UTF-8字节预算可配置，恰好达到预算仍可完成；预算或编码终止错误后不能继续feed/finish。解析保留全部源码/词元/AST，**不是恒定内存流**。当前feed会重扫前缀，极细分块最坏二次时间；无吞吐保证。
 
-## 独立验证与可重放资料
+## 验证与参考资料
 
-implementation-03历史验证包含12项双后端测试（内部每个字节切分点验证），以及12份输入的24次跨后端参考对比：9份固定COMCIFS资料、1份真实COD结构、2份自写输入。文本协议以COMCIFS固定C测试的静态期望断言为仲裁，其他语义用PyCifRW 5.0.1；没有声称编译/运行过C参考实现。另对四类坏输入进行独立拒绝对比。最终实际命令、退出码、源码身份和首次失败留在执行回执目录，不把样本全通过宣传为全标准认证。
+[CI-PLAN.md](CI-PLAN.md) 列出完整验证流程。GitHub Actions 对 JS/Wasm-GC 执行严格检查、构建和测试，并运行公开包 Lunar 消费者、真实文件交接与输出保护、保存预览及浏览器物理换行回归。编译产物、实际输入输出与源码身份分别记录；运行结论见仓库 [Actions](https://github.com/dongxuan2012-2/moonbit-cif/actions)。
 
-可重放参考对比（将工作目录和moon路径换成本机路径）：
+文件读取接收链可在 `examples/value-reader` 运行 `node verify.mjs`：两份完整 CIF1/CIF2 文件输出 values JSON，再交给独立公共包读取并送入真实 Lunar；调用者明确选择米。源码中的固定预期同时检查值、种类、字面量、跨度、只读拒绝及旧 query/apply 的输出保护。浏览器验证限定于所列换行样本。
+
+可选参考工具可将给定 COMCIFS/COD 资料与 PyCifRW 5.0.1 进行对比，文本协议使用固定 C 测试中的静态期望：
 
 ```sh
 python -m pip install --target work/oracle PyCifRW==5.0.1
@@ -255,27 +257,12 @@ python scripts/fetch_reference.py --out work/reference
 python scripts/reference_check.py --corpus work/reference/samples --oracle-path work/oracle --expectations work/reference/comcifs-text-expectations.c --moon /path/to/moon --output work/reference/result.json
 ```
 
-第三方参考样本不放进MIT产品源码。`fetch_reference.py` 的数据目录、C期望断言和许可证必须一起保存；参见 [THIRD_PARTY.md](THIRD_PARTY.md)。不做mmCIF字典语义校验、DDL/dREL执行、单位推断、晶胞几何或空间群展开。
+参考数据、C 期望及各自许可证应一同保存；这些比较用于明确样本的语义核对，软件不提供全标准认证。参考样本与运行时 SDK、依赖缓存均不作为 MIT 原创源码分发。
 
+## 项目归属、许可与边界
 
-深入修复05：补齐CIF1未引用右方括号保留规则，修复单值重写夹带块/帧/注释的边界，以及半值邻点错误进位。新增11个定向测试组，其中数值期望来自Python Decimal.from_float/ROUND_HALF_UP的210个半值邻点与跨位案例；另覆盖双模式分块、UTF-8前缀/折行、partial loop及缺失/溢出不确定度桥接。旧样本成绩保持为历史证据，不重复下载或冒称为本轮新执行。精确命令和本轮记录位于deep-repair-05-20261028回执目录。
+当前模块为 `dongxuan2012-2/cif`，维护及申报账号为 `dongxuan2012-2`，仓库为 [dongxuan2012-2/moonbit-cif](https://github.com/dongxuan2012-2/moonbit-cif)。源码按本地 workspace 方式集成；模块命名空间与仓库归属不改写原软件的版权或上游作者历史。
 
-深入修复06：修复CIF2名称被括号错误截断、最短版本头EOF误拒及正文BOM误接收，新增7组双端回归；包含带标点名称/loop、规范化重复名称、编辑保真和各字节切分点。固定COMCIFS容器名及最小文件资料、独立PyCifRW对比、仓库外Lunar消费者、修复前后源码与编译产物身份记录在deep-repair-06-max-20261028回执目录。沿用05轮未改动数值代码的历史验证。
+原创软件遵循根 [LICENSE](LICENSE) 的 MIT 许可及其原署名。Unicode 映射遵循 [UNICODE-LICENSE.txt](UNICODE-LICENSE.txt)；规范化与可选 Lunar 依赖遵循各自 Apache-2.0 许可。COD 与 COMCIFS 等数据/参考资料的来源、署名和独立许可见 [THIRD_PARTY.md](THIRD_PARTY.md)。
 
-深入修复08：修复注释被过滤后掩盖缺失分隔的问题；保留合法容器/表键注释、EOF尾注释及词内`#`。新增7组双端定向验证，并覆盖UTF-8预算恰好命中/超限、错误后关闭状态、Value高度127/128/129与后续字段恢复。独立预期、实际外部消费者及源码/构建身份见deep-repair-08-max-20261028；07轮无源码修复，其审查结果仍为历史证据。
-
-功能拓展09：新增按原AST跨度进行的原子批量改写及`examples/lunar-batch`真实消费者。生态核查已确认已有mbt-crystal晶体工具和BioSeqs CIF/mmCIF读写；此处的贡献是保留未选字节的多值修改验证与应用，不重复实现晶体几何或通用不确定度代数。使用场景、候选取舍、独立字节拼接/语义读回、错误及兼容性结果见feature-09-max-20261028回执。
-
-拓展10补齐原值选择：提供跨Pair/loop的按标签列查询和显式save frame范围，Lunar批量示例改用新接口，输出保持一致。新的外部消费者以Unicode等价名称选帧，取得原跨度、调用Lunar、原子写回并独立读回；补充复杂替换审查未发现新批量缺陷。定向验证及身份记录见deep-repair-10-max-20261028。
-
-拓展11提供严格的同loop行投影及选择性Lunar示例，避免把独立的等长列当成同行。所选行的Value可直接构造原子批量修改，旧列查询仍保留部分行；新接口与既有作用域回归、原跨度、独立co-loop/字节及语义读回记录见deep-repair-11-max-20261028。
-
-拓展12提供精确保留字符串内容的`format_string`及Lunar计算加说明的同批写回示例。已有编辑器继续接收原始CIF字面量，解析/数值/同行查询实现保持不变；空文本、缺失外观、引号/多行/长Unicode文本、独立解码和原字节读回见deep-repair-12-max-20261028。
-
-拓展14增加独立的本地文件工作流例程，支持按帧/loop查询、散列绑定的ID修改计划、新文件写出及字节回读。库和旧例程源码未改，13轮的嵌套/两次编辑审查仍为历史证据；真实文件、输入/已有输出保留、错误路径及身份记录见deep-repair-14-max-20261028。
-
-拓展16补齐陌生文件的只读`catalog`入口，列出块/帧、Pair和独立loop分组，供用户明确构造查询与计划。使用原跨度、独立结构/计数及实际catalog→query→apply→catalog回读证据见deep-repair-16-max-20261028；不新增核心API或改变原输入接受规则。
-
-拓展18增加不写文件的`preview`计划预览，完整复用原子批量验证后返回目标回执和预计UTF-8字节/散列。预览与实际输出的独立字节核对、只读守卫及错误路径见deep-repair-18-max-20261028；不新增核心API、计算引擎或计划模板推断。
-
-拓展19为`apply`增加可选的预计结果散列约束，在写出前拒绝与调用者期望不同的结果，原命令行为保留。计划变化、同结果计划、零修改副本及真实磁盘回执的证据见deep-repair-19-max-20261028；散列匹配不表示批准或写入完成。
+本库的范围为 CIF 语法、源保真、诊断与测量词元桥接；不执行 STAR2 扩展、mmCIF 字典语义、DDL/dREL、单位/协方差推断、晶胞几何或空间群展开。流式接口保留全源并重扫前缀；文件写出例程使用新路径并读回，不提供原地覆盖、gzip 或崩溃事务。

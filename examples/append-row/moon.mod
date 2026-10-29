@@ -1,7 +1,7 @@
-name = "dongxuan2012/cif-append-example"
+name = "dongxuan2012-2/cif-append-example"
 version = "0.1.0"
 preferred_target = "js"
 supported_targets = ["js"]
 import {
-  "dongxuan2012/cif@0.1.0",
+  "dongxuan2012-2/cif@0.1.0",
 }

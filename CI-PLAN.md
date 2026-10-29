@@ -1,6 +1,9 @@
 # CI verification and evidence
 
 The `CIF library` workflow runs on pushes, pull requests and manual dispatches.
+The root module is `dongxuan2012-2/cif`; owned examples use the same account
+namespace and local workspace membership. CI builds this repository's source,
+including its public-package consumers, without requiring a published CIF package.
 Read the run's `head_sha` and every required step's actual conclusion for the
 submitted commit. A source manifest or an earlier green run is not a final-head
 CI result.
@@ -53,3 +56,10 @@ CI artifacts and local artifacts identify their own compiler/browser/output
 bytes. Do not infer cross-host binary equality from a successful job. Six
 Chromium newline cases do not certify every browser, visual layout or external
 scientific adoption; source and preview hashes do not grant approval.
+
+For an account namespace alignment, regenerate the existing interfaces for all
+owned modules, check/build the root's JS and Wasm-GC targets, and run the actual
+value-reader public-package/file consumer with unchanged behavior expectations.
+Review generated interfaces for namespace-only changes. The full existing
+workflow remains required at the final head; no string-replacement mirror tests
+or large reference generators are needed for this metadata-only change.
