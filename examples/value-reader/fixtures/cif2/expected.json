@@ -1,0 +1,103 @@
+{
+  "ok": true,
+  "mode": "values",
+  "sourceSha256": "5b7817e3cf5f925b241889ec64ff01853eb7ccec5029892d664fe971e31467fd",
+  "version": "CIF2.0",
+  "block": "é",
+  "frame": "Å",
+  "selections": [
+    {
+      "tag": "_length_m",
+      "values": [
+        {
+          "value": "2.50(3)",
+          "kind": "word",
+          "literal": "2.50(3)",
+          "span": {
+            "start_line": 5,
+            "start_col": 11,
+            "end_line": 5,
+            "end_col": 18,
+            "start_offset": 62,
+            "end_offset": 69
+          }
+        }
+      ]
+    },
+    {
+      "tag": "_note",
+      "values": [
+        {
+          "value": "?",
+          "kind": "string",
+          "literal": "\"?\"",
+          "span": {
+            "start_line": 6,
+            "start_col": 7,
+            "end_line": 6,
+            "end_col": 10,
+            "start_offset": 77,
+            "end_offset": 80
+          }
+        }
+      ]
+    },
+    {
+      "tag": "_payload",
+      "values": [
+        {
+          "value": [
+            "1",
+            "2"
+          ],
+          "kind": "list",
+          "literal": "[1 2]",
+          "span": {
+            "start_line": 7,
+            "start_col": 10,
+            "end_line": 7,
+            "end_col": 15,
+            "start_offset": 91,
+            "end_offset": 96
+          }
+        }
+      ]
+    },
+    {
+      "tag": "_loop_m",
+      "values": [
+        {
+          "value": "1.00(2)",
+          "kind": "word",
+          "literal": "1.00(2)",
+          "span": {
+            "start_line": 11,
+            "start_col": 3,
+            "end_line": 11,
+            "end_col": 10,
+            "start_offset": 123,
+            "end_offset": 130
+          }
+        },
+        {
+          "value": "3.00(4)",
+          "kind": "word",
+          "literal": "3.00(4)",
+          "span": {
+            "start_line": 12,
+            "start_col": 3,
+            "end_line": 12,
+            "end_col": 10,
+            "start_offset": 134,
+            "end_offset": 141
+          }
+        }
+      ]
+    },
+    {
+      "tag": "_absent",
+      "values": []
+    }
+  ],
+  "writesFiles": false
+}

@@ -101,7 +101,7 @@ fn matches_id(value : @cif.Value, id : String) -> Bool {
 
 ///|
 fn run(args : Array[String]) -> Json raise WorkflowError {
-  let usage = "catalog INPUT.cif | query INPUT.cif SCOPE.json | preview INPUT.cif PLAN.json | apply INPUT.cif PLAN.json NEW_OUTPUT.cif [--expect-result-sha256 SHA256] | append INPUT.cif ROW.json NEW_OUTPUT.cif [--expect-result-sha256 SHA256]"
+  let usage = "catalog INPUT.cif | query INPUT.cif SCOPE.json | values INPUT.cif SCOPE.json | preview INPUT.cif PLAN.json | apply INPUT.cif PLAN.json NEW_OUTPUT.cif [--expect-result-sha256 SHA256] | append INPUT.cif ROW.json NEW_OUTPUT.cif [--expect-result-sha256 SHA256]"
   if args == ["--help"] {
     return { "ok": true, "usage": usage }
   }
@@ -109,7 +109,7 @@ fn run(args : Array[String]) -> Json raise WorkflowError {
     return catalog_file(args[1])
   }
   if args.length() < 3 ||
-    !((args[0] == "query" && args.length() == 3) ||
+    !(((args[0] == "query" || args[0] == "values") && args.length() == 3) ||
     (args[0] == "preview" && args.length() == 3) ||
     (
       (args[0] == "apply" || args[0] == "append") &&
@@ -142,6 +142,16 @@ fn run(args : Array[String]) -> Json raise WorkflowError {
   let frame = optional_string(plan, "frame")
   if args[0] == "append" {
     return append_file(args, file, plan, source_hash, block, frame)
+  }
+  if args[0] == "values" {
+    return values_file(
+      file,
+      plan,
+      source_hash,
+      block,
+      frame,
+      @utf8.encode(source),
+    )
   }
   let id_tag = string_field(plan, "idTag")
   let _ = rows(file, block, [id_tag], frame)

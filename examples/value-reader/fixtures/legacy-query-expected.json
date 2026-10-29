@@ -1,0 +1,68 @@
+{
+  "ok": true,
+  "sourceSha256": "5b7817e3cf5f925b241889ec64ff01853eb7ccec5029892d664fe971e31467fd",
+  "block": "é",
+  "frame": "Å",
+  "columns": [
+    "_step",
+    "_loop_m"
+  ],
+  "rows": [
+    [
+      {
+        "value": "A",
+        "kind": "word",
+        "literal": "A",
+        "span": {
+          "start_line": 11,
+          "start_col": 1,
+          "end_line": 11,
+          "end_col": 2,
+          "start_offset": 121,
+          "end_offset": 122
+        }
+      },
+      {
+        "value": "1.00(2)",
+        "kind": "word",
+        "literal": "1.00(2)",
+        "span": {
+          "start_line": 11,
+          "start_col": 3,
+          "end_line": 11,
+          "end_col": 10,
+          "start_offset": 123,
+          "end_offset": 130
+        }
+      }
+    ],
+    [
+      {
+        "value": "B",
+        "kind": "word",
+        "literal": "B",
+        "span": {
+          "start_line": 12,
+          "start_col": 1,
+          "end_line": 12,
+          "end_col": 2,
+          "start_offset": 132,
+          "end_offset": 133
+        }
+      },
+      {
+        "value": "3.00(4)",
+        "kind": "word",
+        "literal": "3.00(4)",
+        "span": {
+          "start_line": 12,
+          "start_col": 3,
+          "end_line": 12,
+          "end_col": 10,
+          "start_offset": 134,
+          "end_offset": 141
+        }
+      }
+    ]
+  ]
+}

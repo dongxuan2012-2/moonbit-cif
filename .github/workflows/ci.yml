@@ -123,3 +123,25 @@ jobs:
       - name: Missing Pair provenance and external Lunar receiver
         working-directory: examples/provenance-pair
         run: node verify.mjs
+      - name: Read actual Pair and column values into public Lunar recipient
+        working-directory: examples/value-reader
+        env:
+          CIF_VALUES_EVIDENCE: work/values-ci
+        run: node verify.mjs
+      - name: Preserve values reader evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: values-reader-${{ github.sha }}
+          if-no-files-found: error
+          path: |
+            examples/value-reader/work/values-ci/RESULT.json
+            examples/value-reader/work/values-ci/logs/*
+            examples/value-reader/work/values-ci/cases/**/*.cif
+            examples/value-reader/work/values-ci/cases/**/*.json
+            examples/value-reader/work/values-ci/deliveries/*
+            examples/value-reader/work/values-ci/cli-build/**/*.js
+            examples/value-reader/work/values-ci/recipient-build/**/*.js
+            examples/value-reader/work/values-ci/recipient/*.mbt
+            examples/value-reader/work/values-ci/recipient/*.mbti
+            examples/value-reader/work/values-ci/recipient/moon.*

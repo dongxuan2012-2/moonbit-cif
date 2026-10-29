@@ -1,0 +1,15 @@
+﻿#\#CIF_2.0
+data_É
+_length_m 99.0(1)
+save_Å
+_LENGTH_M 2.50(3)
+_note "?"
+_payload [1 2]
+loop_
+_step
+_loop_m
+A 1.00(2)
+B 4.00(5)
+save_
+data_other
+_length_m 7.00(8)

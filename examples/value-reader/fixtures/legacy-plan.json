@@ -1,0 +1,13 @@
+{
+  "block": "é",
+  "frame": "Å",
+  "idTag": "_step",
+  "sourceSha256": "5b7817e3cf5f925b241889ec64ff01853eb7ccec5029892d664fe971e31467fd",
+  "edits": [
+    {
+      "id": "B",
+      "tag": "_loop_m",
+      "cif": "4.00(5)"
+    }
+  ]
+}

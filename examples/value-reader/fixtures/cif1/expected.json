@@ -1,0 +1,105 @@
+{
+  "ok": true,
+  "mode": "values",
+  "sourceSha256": "0efc997d1ee1324602c133ec018d8f023aba9d50aaa89aa9e1b845a901905edc",
+  "version": "CIF1.1",
+  "block": "pairs",
+  "frame": "",
+  "selections": [
+    {
+      "tag": "_note",
+      "values": [
+        {
+          "value": "pair only",
+          "kind": "string",
+          "literal": "'pair only'",
+          "span": {
+            "start_line": 3,
+            "start_col": 7,
+            "end_line": 3,
+            "end_col": 18,
+            "start_offset": 35,
+            "end_offset": 46
+          }
+        }
+      ]
+    },
+    {
+      "tag": "_length_m",
+      "values": [
+        {
+          "value": "1.20(4)",
+          "kind": "word",
+          "literal": "1.20(4)",
+          "span": {
+            "start_line": 2,
+            "start_col": 11,
+            "end_line": 2,
+            "end_col": 18,
+            "start_offset": 21,
+            "end_offset": 28
+          }
+        }
+      ]
+    },
+    {
+      "tag": "_unknown",
+      "values": [
+        {
+          "value": "?",
+          "kind": "word",
+          "literal": "?",
+          "span": {
+            "start_line": 4,
+            "start_col": 10,
+            "end_line": 4,
+            "end_col": 11,
+            "start_offset": 56,
+            "end_offset": 57
+          }
+        }
+      ]
+    },
+    {
+      "tag": "_text_unknown",
+      "values": [
+        {
+          "value": "?",
+          "kind": "string",
+          "literal": "'?'",
+          "span": {
+            "start_line": 5,
+            "start_col": 15,
+            "end_line": 5,
+            "end_col": 18,
+            "start_offset": 72,
+            "end_offset": 75
+          }
+        }
+      ]
+    },
+    {
+      "tag": "_absent",
+      "values": []
+    },
+    {
+      "tag": "_length_m",
+      "values": [
+        {
+          "value": "1.20(4)",
+          "kind": "word",
+          "literal": "1.20(4)",
+          "span": {
+            "start_line": 2,
+            "start_col": 11,
+            "end_line": 2,
+            "end_col": 18,
+            "start_offset": 21,
+            "end_offset": 28
+          }
+        }
+      ]
+    }
+  ],
+  "writesFiles": false
+}

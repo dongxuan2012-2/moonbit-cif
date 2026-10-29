@@ -13,6 +13,14 @@ CI result.
 - Run the existing append, file, saved-preview, target-validation, catalog,
   curated-removal and provenance recipients. These retain their original scope;
   the review renderer change does not modify parser, editing or numeric APIs.
+- Run `examples/value-reader/verify.mjs`: two complete independent raw files
+  (Pair-only CIF1 and explicit-frame CIF2) must yield the complete expected
+  `values` JSON. Deliver those actual JSON files to an isolated public CIF and
+  pinned Lunar module, checking physical source hash/spans, literal kinds and
+  real numeric receiving with caller-selected metres. Check nine read-only
+  scope/error controls, a legacy loop query/apply chain including existing-output
+  rejection, and recipient rejection of changed source/span. Keep every raw
+  command stream and actual compiler/source/output identity in its evidence.
 - Run `examples/file-workflow/tests/review-browser.mjs` in an installed Chromium.
   The gate requires a browser rather than silently skipping. It builds the real
   CLI, consumes six independent complete source/result fixtures, runs preview,
@@ -34,6 +42,13 @@ The relevant local pass for a renderer-only change is the new browser gate and
 `tests/saved-preview.mjs` (hash/span/replay rejection, existing-output protection,
 and offline use). The unchanged core and older scientific cases need not be
 repeated locally; the complete workflow remains required for the final commit.
+For the additive `values` file reader, use its complete value-reader gate and
+the included legacy query/apply controls; do not rerun the unchanged browser or
+old scientific generators locally. CI still runs the full existing workflow.
+Its separate `values-reader-<head SHA>` artifact retains raw streams, physical
+deliveries, recipient source and compiled JS. Local and CI recipient workspaces
+are independent public modules; whether they are also outside the Git checkout
+is reported from their actual paths rather than assumed.
 CI artifacts and local artifacts identify their own compiler/browser/output
 bytes. Do not infer cross-host binary equality from a successful job. Six
 Chromium newline cases do not certify every browser, visual layout or external

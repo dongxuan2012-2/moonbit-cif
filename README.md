@@ -166,6 +166,12 @@ node review-preview.mjs work/sample.preview.json work/sample.context.html --sour
 
 `node tests/catalog-consumer.mjs`提供可运行的目录消费链：调用者明确选定固定样本的frame/loop/ID列，下游用真实目录的`name`/`tags`和query的ID/源散列建立计划，执行现有apply，再catalog/query回读。独立手写CIF、完整输出和目录/同行JSON预期核对中文名称、原始BOM/CRLF、UTF-8半开字节跨度及单列中的嵌套List/Table；复合值各算一个cell。另核pair-only目录的空loop及误作loop查询时的拒绝，输入始终保持原字节。CI执行同一消费链；产品不自动选择ID，也不增加格式或改变missing-marker政策。
 
+Pair-only文件或只需按标签读取值时，可用`values INPUT.cif SCOPE.json`。范围文件为`{"block":"pairs","tags":["_length_m","_note"]}`，可另给`frame`。它复用公开的`find_values`，返回`mode:"values"`、完整原文件`sourceSha256`、版本、所给范围和`selections:[{"tag":...,"values":[...]}]`；每个值含解码`value`、`kind`、原`literal`与UTF-8跨度。Pair返回一个值，loop列按源序返回全部单元格，复合值保持一个整体；各标签独立查询，不拼行、不猜ID。请求顺序及重复标签保留，空`tags`返回空分组，缺失范围/标签返回空值数组；名称匹配沿用公开API。`tags`须为字符串数组，原CIF须完整合法且为UTF-8。
+
+命令只输出JSON（`writesFiles:false`），不创建CIF或修改输入/已有输出；保存stdout时由调用者选择文件路径。旧`query`仍只投影同一loop的ID与列，原Pair-only拒绝及apply的新路径写出约束不变。`value`是语义视图，不自动转换数字、missing或单位；带引号的`?`与裸`?`可通过`kind`/`literal`区分。
+
+`cd examples/value-reader && node verify.mjs`重放两份独立CIF1/CIF2文件到完整JSON，再把真实JSON路径交给独立公开包：接收器核对整文件散列及每个字面量的源字节跨度，重新解析提取值，通过`UncertaintySink`实际交给固定版本Lunar。米由调用者明确选择；引用的missing标记、裸missing和List不被当成量值。还覆盖空/缺失范围、坏输入的只读拒绝、旧query/apply及已有输出保护。公开API原本已可编程读取这些值；本次增加文件CLI入口与可重放接收链，不主张新科学或查询算法、第三方采用。
+
 ### 追加一条文件记录
 
 `append INPUT.cif ROW.json NEW_OUTPUT.cif [--expect-result-sha256 SHA256]` 将已有纯文本追加 API 接到真实文件路径。先用 `catalog` 明确选择原块/帧/loop；行文件绑定该输入的完整 `sourceSha256`，`headers` 必须复制所选 loop 的全部表头，保持原顺序和原拼写。块/帧仍使用已有名称匹配，`frame` 可省略。下面是四列行文件的形状，散列须取自实际输入：

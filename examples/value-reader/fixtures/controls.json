@@ -1,0 +1,136 @@
+[
+  {
+    "name": "empty-tags",
+    "source": "cif1",
+    "scope": {
+      "block": "pairs",
+      "tags": []
+    },
+    "success": true,
+    "expected": {
+      "ok": true,
+      "mode": "values",
+      "sourceSha256": "0efc997d1ee1324602c133ec018d8f023aba9d50aaa89aa9e1b845a901905edc",
+      "version": "CIF1.1",
+      "block": "pairs",
+      "frame": "",
+      "selections": [],
+      "writesFiles": false
+    }
+  },
+  {
+    "name": "missing-block",
+    "source": "cif1",
+    "scope": {
+      "block": "absent",
+      "tags": [
+        "_length_m"
+      ]
+    },
+    "success": true,
+    "expected": {
+      "ok": true,
+      "mode": "values",
+      "sourceSha256": "0efc997d1ee1324602c133ec018d8f023aba9d50aaa89aa9e1b845a901905edc",
+      "version": "CIF1.1",
+      "block": "absent",
+      "frame": "",
+      "selections": [
+        {
+          "tag": "_length_m",
+          "values": []
+        }
+      ],
+      "writesFiles": false
+    }
+  },
+  {
+    "name": "missing-frame",
+    "source": "cif2",
+    "scope": {
+      "block": "é",
+      "frame": "absent",
+      "tags": [
+        "_length_m"
+      ]
+    },
+    "success": true,
+    "expected": {
+      "ok": true,
+      "mode": "values",
+      "sourceSha256": "5b7817e3cf5f925b241889ec64ff01853eb7ccec5029892d664fe971e31467fd",
+      "version": "CIF2.0",
+      "block": "é",
+      "frame": "absent",
+      "selections": [
+        {
+          "tag": "_length_m",
+          "values": []
+        }
+      ],
+      "writesFiles": false
+    }
+  },
+  {
+    "name": "missing-tags",
+    "source": "cif1",
+    "scope": {
+      "block": "pairs"
+    },
+    "success": false
+  },
+  {
+    "name": "tags-type",
+    "source": "cif1",
+    "scope": {
+      "block": "pairs",
+      "tags": {}
+    },
+    "success": false
+  },
+  {
+    "name": "tag-item-type",
+    "source": "cif1",
+    "scope": {
+      "block": "pairs",
+      "tags": [
+        "_length_m",
+        1
+      ]
+    },
+    "success": false
+  },
+  {
+    "name": "block-type",
+    "source": "cif1",
+    "scope": {
+      "block": 1,
+      "tags": [
+        "_length_m"
+      ]
+    },
+    "success": false
+  },
+  {
+    "name": "invalid-cif",
+    "sourceText": "data_bad\n_bad",
+    "scope": {
+      "block": "bad",
+      "tags": [
+        "_bad"
+      ]
+    },
+    "success": false
+  },
+  {
+    "name": "invalid-utf8",
+    "sourceHex": "646174615f6261640a5f762027ff270a",
+    "scope": {
+      "block": "bad",
+      "tags": [
+        "_v"
+      ]
+    },
+    "success": false
+  }
+]
