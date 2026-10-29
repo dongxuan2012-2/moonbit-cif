@@ -1,0 +1,22 @@
+{
+  "name": "crlf-control",
+  "source": {
+    "bytes": 61,
+    "sha256": "185072f5303a17d4c9bd13c5cbde969ed3af4cd83aa66a0406c85a53e9ec3bad"
+  },
+  "planned": {
+    "bytes": 61,
+    "sha256": "12f3f61a09c27c5891886b3924dc492bf38c1ae48d486574162b3f2cb8d4fbec"
+  },
+  "originalSpan": {
+    "start_offset": 31,
+    "end_offset": 36
+  },
+  "originalLiteral": "'old'",
+  "replacement": "'new'",
+  "originalContext": "_note\r\nA 'old'\r\n_tail keep\r\n",
+  "plannedContext": "_note\r\nA 'new'\r\n_tail keep\r\n",
+  "originalVisual": "_note\nA 'old'\n_tail keep\n",
+  "plannedVisual": "_note\nA 'new'\n_tail keep\n",
+  "highlightVisual": "'new'"
+}

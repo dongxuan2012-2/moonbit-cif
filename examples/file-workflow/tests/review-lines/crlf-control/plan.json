@@ -1,0 +1,12 @@
+{
+  "block": "lab",
+  "idTag": "_id",
+  "sourceSha256": "185072f5303a17d4c9bd13c5cbde969ed3af4cd83aa66a0406c85a53e9ec3bad",
+  "edits": [
+    {
+      "id": "A",
+      "tag": "_note",
+      "cif": "'new'"
+    }
+  ]
+}

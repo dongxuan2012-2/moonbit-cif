@@ -1,0 +1,40 @@
+# CI verification and evidence
+
+The `CIF library` workflow runs on pushes, pull requests and manual dispatches.
+Read the run's `head_sha` and every required step's actual conclusion for the
+submitted commit. A source manifest or an earlier green run is not a final-head
+CI result.
+
+- Install Node 24.11.0 and the official pinned MoonBit release using
+  `scripts/setup-ci.sh`, then resolve the declared public dependencies.
+- Record runtime versions and Git HEAD. Check, build and test the core library
+  with warnings denied on JS and Wasm-GC. Run the Lunar, batch, selective and
+  annotated consumers on their existing targets, plus formatting/interface drift.
+- Run the existing append, file, saved-preview, target-validation, catalog,
+  curated-removal and provenance recipients. These retain their original scope;
+  the review renderer change does not modify parser, editing or numeric APIs.
+- Run `examples/file-workflow/tests/review-browser.mjs` in an installed Chromium.
+  The gate requires a browser rather than silently skipping. It builds the real
+  CLI, consumes six independent complete source/result fixtures, runs preview,
+  HTML review and hash-constrained apply, and reads the physical output back.
+  It checks CR-only lines, CR-containing literal/replacement text, CRLF crossing
+  either or both highlight boundaries, and ordinary LF/CRLF controls.
+- The browser parses an identified copy of each generated page with a separate
+  observer appended. It compares DOM text, per-character vertical positions and
+  preformatted line heights against independently specified physical-line text
+  in the same document. The original generated HTML remains separately hashed.
+  Highlight whitespace and all source/plan/golden bytes are also checked.
+- Upload the gate's raw command streams, generated HTML and observed test copies,
+  screenshots, browser receipts, complete input/output files, compiled JS and
+  identity summary as `review-browser-<head SHA>`, including on failure. Browser
+  profiles and compiler caches are omitted; the executable identity and actual
+  user agent are recorded in the summary.
+
+The relevant local pass for a renderer-only change is the new browser gate and
+`tests/saved-preview.mjs` (hash/span/replay rejection, existing-output protection,
+and offline use). The unchanged core and older scientific cases need not be
+repeated locally; the complete workflow remains required for the final commit.
+CI artifacts and local artifacts identify their own compiler/browser/output
+bytes. Do not infer cross-host binary equality from a successful job. Six
+Chromium newline cases do not certify every browser, visual layout or external
+scientific adoption; source and preview hashes do not grant approval.

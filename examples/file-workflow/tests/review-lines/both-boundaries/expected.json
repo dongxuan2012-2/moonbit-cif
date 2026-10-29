@@ -1,0 +1,21 @@
+{
+  "name": "both-boundaries",
+  "replacement": "\n;first\nsecond\n;\r",
+  "originalContext": "A\r'old'\n_tail keep\n",
+  "plannedContext": "_note\rA\r\n;first\nsecond\n;\r\n_tail keep\n",
+  "source": {
+    "bytes": 54,
+    "sha256": "6d918fb2efc9e8805be2010380381994622b576f9ccd589c7a27e084f2970cb0"
+  },
+  "planned": {
+    "bytes": 66,
+    "sha256": "8a03e273a6664a9f840a0afa783c738e073a5eda2fbb01cce2552c90d970aa0a"
+  },
+  "originalSpan": {
+    "start_offset": 27,
+    "end_offset": 32
+  },
+  "originalVisual": "A\n'old'\n_tail keep\n",
+  "plannedVisual": "_note\nA\n;first\nsecond\n;\n_tail keep\n",
+  "highlightVisual": "\n;first\nsecond\n;\n"
+}

@@ -1,0 +1,21 @@
+{
+  "name": "leading-lf",
+  "replacement": "\n;first\nsecond\n;\n",
+  "originalContext": "A\r'old'\r_tail keep\r",
+  "plannedContext": "_note\rA\r\n;first\nsecond\n;\n\r",
+  "source": {
+    "bytes": 54,
+    "sha256": "ce2cf7b32312c13fa1617e19ad78f70e3fa409b4c2e710a5e18a438b8199c3c3"
+  },
+  "planned": {
+    "bytes": 66,
+    "sha256": "3e6032ce61e328946871ad047558e8ebe2c9ea433c91c831377fecb4105267cf"
+  },
+  "originalSpan": {
+    "start_offset": 27,
+    "end_offset": 32
+  },
+  "originalVisual": "A\n'old'\n_tail keep\n",
+  "plannedVisual": "_note\nA\n;first\nsecond\n;\n\n",
+  "highlightVisual": "\n;first\nsecond\n;\n"
+}

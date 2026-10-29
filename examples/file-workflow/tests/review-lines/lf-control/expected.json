@@ -1,0 +1,22 @@
+{
+  "name": "lf-control",
+  "source": {
+    "bytes": 54,
+    "sha256": "1a583b0c033d1c8ce1b8a4c4eee131a06c99ad08bd80979482cfe9486255911d"
+  },
+  "planned": {
+    "bytes": 54,
+    "sha256": "e0157fe0e751da33ee8cc965ac933d999933fa598ea095bfe8a35a1028ca6868"
+  },
+  "originalSpan": {
+    "start_offset": 27,
+    "end_offset": 32
+  },
+  "originalLiteral": "'old'",
+  "replacement": "'new'",
+  "originalContext": "_note\nA 'old'\n_tail keep\n",
+  "plannedContext": "_note\nA 'new'\n_tail keep\n",
+  "originalVisual": "_note\nA 'old'\n_tail keep\n",
+  "plannedVisual": "_note\nA 'new'\n_tail keep\n",
+  "highlightVisual": "'new'"
+}

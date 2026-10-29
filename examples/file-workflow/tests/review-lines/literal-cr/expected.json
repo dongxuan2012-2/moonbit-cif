@@ -1,0 +1,22 @@
+{
+  "name": "literal-cr",
+  "source": {
+    "bytes": 60,
+    "sha256": "3a18c368dad27cb45800603cbf41c1e4e134c3965e636cb0175eece16811cea3"
+  },
+  "planned": {
+    "bytes": 62,
+    "sha256": "8b3c54e17c0f4cbd9e8b3b646dc27fd77660843e79f7a9fc03a2263b1b240818"
+  },
+  "originalSpan": {
+    "start_offset": 27,
+    "end_offset": 38
+  },
+  "originalLiteral": ";old\rnote\r;",
+  "replacement": "\n;new\rnote\r;\n",
+  "originalContext": "A\r;old\rnote\r;\r_tail keep\r",
+  "plannedContext": "_note\rA\r\n;new\rnote\r;\n\r",
+  "originalVisual": "A\n;old\nnote\n;\n_tail keep\n",
+  "plannedVisual": "_note\nA\n;new\nnote\n;\n\n",
+  "highlightVisual": "\n;new\nnote\n;\n"
+}

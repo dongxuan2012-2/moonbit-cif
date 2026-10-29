@@ -88,6 +88,26 @@ jobs:
       - name: Saved preview consumer contracts
         working-directory: examples/file-workflow
         run: node tests/saved-preview.mjs
+      - name: Review physical lines in actual Chromium
+        working-directory: examples/file-workflow
+        env:
+          CIF_REVIEW_EVIDENCE: work/review-browser-ci
+        run: node tests/review-browser.mjs
+      - name: Preserve review browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: review-browser-${{ github.sha }}
+          if-no-files-found: error
+          path: |
+            examples/file-workflow/work/review-browser-ci/RESULT.json
+            examples/file-workflow/work/review-browser-ci/browser-observer.js
+            examples/file-workflow/work/review-browser-ci/logs/*
+            examples/file-workflow/work/review-browser-ci/cli-build/**/*.js
+            examples/file-workflow/work/review-browser-ci/cases/*/*.cif
+            examples/file-workflow/work/review-browser-ci/cases/*/*.json
+            examples/file-workflow/work/review-browser-ci/cases/*/*.html
+            examples/file-workflow/work/review-browser-ci/cases/*/*.png
       - name: File plan target validation contracts
         working-directory: examples/file-workflow
         run: node tests/plan-targets.mjs

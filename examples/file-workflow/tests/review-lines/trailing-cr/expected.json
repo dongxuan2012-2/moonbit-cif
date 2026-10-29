@@ -1,0 +1,21 @@
+{
+  "name": "trailing-cr",
+  "replacement": "'new'\r",
+  "originalContext": "_note\nA 'old'\n_tail keep\n",
+  "plannedContext": "_note\nA 'new'\r\n_tail keep\n",
+  "source": {
+    "bytes": 54,
+    "sha256": "1a583b0c033d1c8ce1b8a4c4eee131a06c99ad08bd80979482cfe9486255911d"
+  },
+  "planned": {
+    "bytes": 55,
+    "sha256": "298cf61fc6c5f26689edbd9edd4949fc736d0081306c3cf71327506102c4b97d"
+  },
+  "originalSpan": {
+    "start_offset": 27,
+    "end_offset": 32
+  },
+  "originalVisual": "_note\nA 'old'\n_tail keep\n",
+  "plannedVisual": "_note\nA 'new'\n_tail keep\n",
+  "highlightVisual": "'new'\n"
+}

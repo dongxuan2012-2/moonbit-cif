@@ -8,6 +8,17 @@ const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 const escape = text => text.replace(/[&<>"'\r]/g, character => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;', '\r': '&#13;',
 })[character]);
+// CR character references survive HTML parsing but do not render as line breaks.
+// Normalize only the displayed text; saved JSON, CIF bytes and offsets stay raw.
+const sourceText = text => escape(text.replace(/\r\n?/g, '\n'));
+
+function highlightedContext({ before, highlight, after }) {
+  // A physical CRLF can cross a mark boundary. Give its one displayed newline
+  // to the highlighted half rather than normalizing the two halves twice.
+  if (before.endsWith('\r') && highlight.startsWith('\n')) before = before.slice(0, -1);
+  if ((highlight || before).endsWith('\r') && after.startsWith('\n')) after = after.slice(1);
+  return `${sourceText(before)}<mark>${sourceText(highlight)}</mark>${sourceText(after)}`;
+}
 
 function requireText(value, label) {
   if (typeof value !== 'string') throw new Error(`Expected string: ${label}`);
@@ -130,13 +141,13 @@ function render(preview, sourceContext) {
     const span = edit.original.span;
     const position = `L${span.start_line}:${span.start_col} – L${span.end_line}:${span.end_col}`;
     const item = sourceContext?.items[index];
-    const context = item ? `<div class="source-context"><h3>源文上下文 · L${item.firstLine}–L${item.lastLine} · UTF-8 [${item.start}, ${item.end})</h3><pre><code class="source-context-text">${escape(item.before)}<mark>${escape(edit.original.literal)}</mark>${escape(item.after)}</code></pre></div>` : '';
+    const context = item ? `<div class="source-context"><h3>源文上下文 · L${item.firstLine}–L${item.lastLine} · UTF-8 [${item.start}, ${item.end})</h3><pre><code class="source-context-text">${highlightedContext(item)}</code></pre></div>` : '';
     const result = sourceContext?.resultItems[index];
-    const plannedContext = result ? `<div class="planned-context"><h3>预计结果上下文 · L${result.firstLine}–L${result.lastLine} · UTF-8 [${result.start}, ${result.end})</h3><p class="position">高亮本项替换片段，包含其空白；预计结果不表示实际写出完成。</p><pre><code class="planned-context-text">${escape(result.before)}<mark>${escape(result.highlight)}</mark>${escape(result.after)}</code></pre></div>` : '';
+    const plannedContext = result ? `<div class="planned-context"><h3>预计结果上下文 · L${result.firstLine}–L${result.lastLine} · UTF-8 [${result.start}, ${result.end})</h3><p class="position">高亮本项替换片段，包含其空白；预计结果不表示实际写出完成。</p><pre><code class="planned-context-text">${highlightedContext(result)}</code></pre></div>` : '';
     return `<section class="edit"><h2>${index + 1}. ${escape(edit.tag)} <small>ID ${escape(edit.id)}</small></h2>
 <p class="position">${position} · UTF-8 [${span.start_offset}, ${span.end_offset}) · ${escape(edit.original.kind)}</p>
-<div class="comparison"><div class="before"><h3>原字面量</h3><pre><code class="original">${escape(edit.original.literal)}</code></pre></div>
-<div class="after"><h3>替换片段</h3><pre><code class="replacement">${escape(edit.replacement)}</code></pre></div></div>${context}${plannedContext}</section>`;
+<div class="comparison"><div class="before"><h3>原字面量</h3><pre><code class="original">${sourceText(edit.original.literal)}</code></pre></div>
+<div class="after"><h3>替换片段</h3><pre><code class="replacement">${sourceText(edit.replacement)}</code></pre></div></div>${context}${plannedContext}</section>`;
   }).join('\n');
   return `<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
