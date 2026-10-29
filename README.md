@@ -135,6 +135,27 @@ node review-preview.mjs work/sample.preview.json work/sample.context.html --sour
 
 `node tests/catalog-consumer.mjs`提供可运行的目录消费链：调用者明确选定固定样本的frame/loop/ID列，下游用真实目录的`name`/`tags`和query的ID/源散列建立计划，执行现有apply，再catalog/query回读。独立手写CIF、完整输出和目录/同行JSON预期核对中文名称、原始BOM/CRLF、UTF-8半开字节跨度及单列中的嵌套List/Table；复合值各算一个cell。另核pair-only目录的空loop及误作loop查询时的拒绝，输入始终保持原字节。CI执行同一消费链；产品不自动选择ID，也不增加格式或改变missing-marker政策。
 
+### 追加一条文件记录
+
+`append INPUT.cif ROW.json NEW_OUTPUT.cif [--expect-result-sha256 SHA256]` 将已有纯文本追加 API 接到真实文件路径。先用 `catalog` 明确选择原块/帧/loop；行文件绑定该输入的完整 `sourceSha256`，`headers` 必须复制所选 loop 的全部表头，保持原顺序和原拼写。块/帧仍使用已有名称匹配，`frame` 可省略。下面是四列行文件的形状，散列须取自实际输入：
+
+```json
+{"block":"实验","frame":"批次","sourceSha256":"复制catalog返回的完整散列","headers":["_sample_id","_length_m","_note","_meta"],"cells":[{"cif":"R"},{"cif":"6.250(12)"},{"text":"late R"},{"cif":"[3 {'x':4}]"}],"newline":"\n"}
+```
+
+`cells` 每项只能提供 `cif` 或 `text`，数量须与表头一致。`cif` 是一个已编码值，`text` 复用目标版本的 `format_string`；复合值和多行文本各算一个单元格。新增分隔符默认 LF，也可显式选 CRLF；旧 BOM/换行和所有旧字节保持原序。此命令没有 ID 选择或重复 ID 限制，不推断单位。实际源散列、完整作用域/表头、版本、行宽、片段或最终上下文不符都在创建输出前拒绝。
+
+例如在本目录用随附的新文件样本运行（输出路径须尚不存在）：
+
+```sh
+moon run . --target js -- append tests/append/cif2-source.cif tests/append/cif2-row.json NEW_OUTPUT.cif
+node tests/append-file.mjs
+```
+
+成功 JSON 的 `mode` 为 `append`，记录实际原块/帧名称、表头及原 loop 跨度、追加前后行数、编码后的新单元格和 `disk` 的实际字节数/SHA256/读回结果。可选结果散列与 `apply` 共用同一检查及现有独占写出路径。输入和已有目标不写入；新目标创建后写入、刷新或读回失败时尝试删除，删除失败会在错误中明确报告，可能留下新文件；不承诺崩溃事务或并发锁。共享写出验证保持既有 apply 回执及语义。
+
+`tests/append-file.mjs` 编译真实 CLI，从另一工作目录按绝对路径执行 catalog→append→catalog，并将物理输出交给 checkout 外复制的 `examples/file-append-receiver`。新的独立手写 CIF2 样本为279→312字节，插入偏移225、增加33字节，保留其他块/帧和四列原行；CIF1为77→103字节，在无末换行的EOF注释后增加26字节。真实 Lunar 接收新值6.25/u0.012和7/u0.025，米由接收者声明。回归核对完整独立输出、前缀/插入/后缀、结构跨度、错误前后文件，以及故障注入下的读回/清理后果，并保留源码、编译JS及原始输出身份。接收器由本项目自编，这证明可运行文件交接，不代表第三方或实验室已采用。CI执行同一链，不重复计算旧固定String示例为新的功能。
+
 ## 公共库用法
 
 ```moonbit

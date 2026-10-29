@@ -1,0 +1,81 @@
+{
+  "cif2": {
+    "sourceBytes": 279,
+    "sourceSha256": "446df3e3306d6ef10d46b39c145745da8afc1ea9cfd86bde10949e3e76f24624",
+    "insertOffset": 225,
+    "insertedBytes": 33,
+    "insertedSha256": "f11b7b64dc5434257b7c64ef8b6cb948d5ff44444fb81c4fbc4b40bd2d2aba1b",
+    "outputBytes": 312,
+    "outputSha256": "b324322491840057ccbe8140e398d56fd67b86ab8d9fd9054a468fe155cd2798",
+    "loopSpanBefore": [
+      101,
+      189
+    ],
+    "loopSpanAfter": [
+      101,
+      257
+    ],
+    "rowCountBefore": 2,
+    "rowCountAfter": 3,
+    "headers": [
+      "_sample_id",
+      "_length_m",
+      "_note",
+      "_meta"
+    ],
+    "newValues": [
+      "R",
+      "6.250(12)",
+      "late R",
+      [
+        "3",
+        {
+          "x": "4"
+        }
+      ]
+    ],
+    "measurement": {
+      "value": 6.25,
+      "uncertainty": 0.012,
+      "callerUnit": "m"
+    },
+    "tailTagBefore": 225,
+    "tailTagAfter": 258,
+    "otherBlockBefore": 251,
+    "otherBlockAfter": 284
+  },
+  "cif1": {
+    "sourceBytes": 77,
+    "sourceSha256": "199a28d7ca05a0afbde743a142c403ceefab8b2f5d5823c7012c3def833dd510",
+    "insertOffset": 77,
+    "insertedBytes": 26,
+    "insertedSha256": "1108e1e1d2bd9121e1452b02c6f1214739fcf1f5a27cb6285f1436a36307718b",
+    "outputBytes": 103,
+    "outputSha256": "a01427fea70a30d41ec37ce7906381fe4beedede2b1ea25270816883cc684bb0",
+    "loopSpanBefore": [
+      32,
+      71
+    ],
+    "loopSpanAfter": [
+      32,
+      101
+    ],
+    "rowCountBefore": 1,
+    "rowCountAfter": 2,
+    "headers": [
+      "_id",
+      "_length_m",
+      "_note"
+    ],
+    "newValues": [
+      "Y",
+      "7.000(25)",
+      "late Y"
+    ],
+    "measurement": {
+      "value": 7.0,
+      "uncertainty": 0.025,
+      "callerUnit": "m"
+    }
+  }
+}

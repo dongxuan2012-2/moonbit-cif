@@ -101,7 +101,7 @@ fn matches_id(value : @cif.Value, id : String) -> Bool {
 
 ///|
 fn run(args : Array[String]) -> Json raise WorkflowError {
-  let usage = "catalog INPUT.cif | query INPUT.cif SCOPE.json | preview INPUT.cif PLAN.json | apply INPUT.cif PLAN.json NEW_OUTPUT.cif [--expect-result-sha256 SHA256]"
+  let usage = "catalog INPUT.cif | query INPUT.cif SCOPE.json | preview INPUT.cif PLAN.json | apply INPUT.cif PLAN.json NEW_OUTPUT.cif [--expect-result-sha256 SHA256] | append INPUT.cif ROW.json NEW_OUTPUT.cif [--expect-result-sha256 SHA256]"
   if args == ["--help"] {
     return { "ok": true, "usage": usage }
   }
@@ -112,7 +112,7 @@ fn run(args : Array[String]) -> Json raise WorkflowError {
     !((args[0] == "query" && args.length() == 3) ||
     (args[0] == "preview" && args.length() == 3) ||
     (
-      args[0] == "apply" &&
+      (args[0] == "apply" || args[0] == "append") &&
       (
         args.length() == 4 ||
         (args.length() == 6 && args[4] == "--expect-result-sha256")
@@ -140,6 +140,9 @@ fn run(args : Array[String]) -> Json raise WorkflowError {
   let file = report.file
   let block = string_field(plan, "block")
   let frame = optional_string(plan, "frame")
+  if args[0] == "append" {
+    return append_file(args, file, plan, source_hash, block, frame)
+  }
   let id_tag = string_field(plan, "idTag")
   let _ = rows(file, block, [id_tag], frame)
   let source_bytes = @utf8.encode(source)
@@ -229,28 +232,7 @@ fn run(args : Array[String]) -> Json raise WorkflowError {
       "writesFiles": false,
     }
   }
-  let expected_result = if args.length() == 6 {
-    let expected = args[5].to_lower()
-    if expected.length() != 64 ||
-      expected
-      .to_array()
-      .any(c => !((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f'))) {
-      raise Invalid(
-        "Expected result SHA256 must contain exactly 64 hexadecimal digits",
-      )
-    }
-    let planned = host_result(host_text_identity(edited))
-    if string_field(planned, "sha256") != expected {
-      raise Invalid("Expected result SHA256 differs; no output created")
-    }
-    Some(expected)
-  } else {
-    None
-  }
-  let disk = host_result(host_write_new(args[3], edited))
-  if expected_result is Some(expected) {
-    disk["expectedResultSha256"] = Json::string(expected)
-  }
+  let disk = write_output(args, edited)
   {
     "ok": true,
     "input": args[1],
@@ -258,7 +240,7 @@ fn run(args : Array[String]) -> Json raise WorkflowError {
     "sourceSha256": source_hash,
     "editCount": edits.length(),
     "edits": receipt.to_json(),
-    "disk": disk.to_json(),
+    "disk": disk,
   }
 }
 

@@ -1,0 +1,20 @@
+﻿#\#CIF_2.0
+data_实验
+_root keep
+loop_
+_background_id
+_background_m
+R 9.0(1)
+save_批次
+loop_
+_sample_id
+_length_m
+_note
+_meta
+P 1.500(20) ? []
+Q 2.750(5) 'old Q' {'k':1} # retained
+# end of measurements
+_tail [1 {'k':2}]
+save_
+data_other
+_x 'untouched'

@@ -94,3 +94,6 @@ jobs:
       - name: Catalog discovery consumer chain
         working-directory: examples/file-workflow
         run: node tests/catalog-consumer.mjs
+      - name: Append arbitrary file and external Lunar receiver
+        working-directory: examples/file-workflow
+        run: node tests/append-file.mjs

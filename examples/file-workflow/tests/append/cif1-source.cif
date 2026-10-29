@@ -1,0 +1,7 @@
+data_one
+_title 'CIF1 original'
+loop_
+_id
+_length_m
+_note
+X 0.500(10) ? # EOF

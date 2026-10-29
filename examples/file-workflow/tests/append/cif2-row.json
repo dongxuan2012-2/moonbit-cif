@@ -1,0 +1,26 @@
+{
+  "block": "实验",
+  "sourceSha256": "446df3e3306d6ef10d46b39c145745da8afc1ea9cfd86bde10949e3e76f24624",
+  "headers": [
+    "_sample_id",
+    "_length_m",
+    "_note",
+    "_meta"
+  ],
+  "cells": [
+    {
+      "cif": "R"
+    },
+    {
+      "cif": "6.250(12)"
+    },
+    {
+      "text": "late R"
+    },
+    {
+      "cif": "[3 {'x':4}]"
+    }
+  ],
+  "newline": "\n",
+  "frame": "批次"
+}

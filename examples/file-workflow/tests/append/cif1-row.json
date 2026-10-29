@@ -1,0 +1,21 @@
+{
+  "block": "one",
+  "sourceSha256": "199a28d7ca05a0afbde743a142c403ceefab8b2f5d5823c7012c3def833dd510",
+  "headers": [
+    "_id",
+    "_length_m",
+    "_note"
+  ],
+  "cells": [
+    {
+      "cif": "Y"
+    },
+    {
+      "cif": "7.000(25)"
+    },
+    {
+      "text": "late Y"
+    }
+  ],
+  "newline": "\r\n"
+}

@@ -1,0 +1,9 @@
+import {
+  "dongxuan2012/cif",
+  "moonbitlang/core/env",
+  "moonbitlang/core/encoding/utf8",
+  "FrozenLemonTee/LunarUncertainty/measure",
+  "FrozenLemonTee/LunarUnits/units/si",
+}
+
+pkgtype(kind: "executable")

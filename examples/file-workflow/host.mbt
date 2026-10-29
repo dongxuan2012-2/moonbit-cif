@@ -51,3 +51,33 @@ extern "js" fn host_text_identity(text : String) -> String =
   #|     return JSON.stringify({ ok: false, error: String(error.message || error) });
   #|   }
   #| }
+
+///|
+fn write_output(
+  args : Array[String],
+  edited : String,
+) -> Json raise WorkflowError {
+  let expected_result = if args.length() == 6 {
+    let expected = args[5].to_lower()
+    if expected.length() != 64 ||
+      expected
+      .to_array()
+      .any(c => !((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f'))) {
+      raise Invalid(
+        "Expected result SHA256 must contain exactly 64 hexadecimal digits",
+      )
+    }
+    let planned = host_result(host_text_identity(edited))
+    if string_field(planned, "sha256") != expected {
+      raise Invalid("Expected result SHA256 differs; no output created")
+    }
+    Some(expected)
+  } else {
+    None
+  }
+  let disk = host_result(host_write_new(args[3], edited))
+  if expected_result is Some(expected) {
+    disk["expectedResultSha256"] = Json::string(expected)
+  }
+  disk.to_json()
+}
