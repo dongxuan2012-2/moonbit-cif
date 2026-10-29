@@ -100,3 +100,6 @@ jobs:
       - name: Curated row removal and external Lunar receiver
         working-directory: examples/curate-loop
         run: node verify.mjs
+      - name: Missing Pair provenance and external Lunar receiver
+        working-directory: examples/provenance-pair
+        run: node verify.mjs

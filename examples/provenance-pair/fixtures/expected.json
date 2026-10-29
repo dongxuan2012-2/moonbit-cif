@@ -1,0 +1,68 @@
+{
+  "cif2": {
+    "sourceBytes": 166,
+    "sourceSha256": "781b81e99210e4ae786935fd41ff29e995a363f48dc080593e40f8aa5f24045d",
+    "insertOffset": 89,
+    "insertedBytes": 29,
+    "insertedSha256": "ea2f6d241b9653350bd1f592252f2384c2ca2d9db0d98b6a3bd7732bbdf0c4d1",
+    "outputBytes": 195,
+    "outputSha256": "0aab4a9c05a5a5b93216361d0c43a64adba422adfb63750c8a8443fa78e448bc",
+    "newTagSpan": [
+      89,
+      105
+    ],
+    "newValueSpan": [
+      106,
+      117
+    ],
+    "note": "已核对",
+    "oldMeasurements": [
+      {
+        "value": 1.0,
+        "uncertainty": 0.01
+      },
+      {
+        "value": 3.5,
+        "uncertainty": 0.02
+      }
+    ],
+    "unitChosenByCaller": "m",
+    "loopSpanBefore": [
+      89,
+      136
+    ],
+    "loopSpanAfter": [
+      118,
+      165
+    ],
+    "otherBlockBefore": 145,
+    "otherBlockAfter": 174
+  },
+  "cif1": {
+    "sourceBytes": 50,
+    "sourceSha256": "2d3e6cbdf48e5c09d77c8723db8ba56d63cbbba7d4d32ac8dbe2cef0bf82ae68",
+    "insertOffset": 26,
+    "insertedBytes": 37,
+    "insertedSha256": "4cf588b7b80d5f468e4e4d354884d3ad99d66b4544bcd69cc0cda9350b51c44e",
+    "outputBytes": 87,
+    "outputSha256": "fe8e336cc8e051917cf0ec849c66dd3b37dbf0018baa65aa6031f1ab24a616bb",
+    "newTagSpan": [
+      27,
+      43
+    ],
+    "newValueSpan": [
+      44,
+      62
+    ],
+    "note": "reviewed locally",
+    "oldMeasurements": [
+      {
+        "value": 2.5,
+        "uncertainty": 0.005
+      }
+    ],
+    "unitChosenByCaller": "m",
+    "oldTagBefore": 26,
+    "oldTagAfter": 63
+  }
+}

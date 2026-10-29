@@ -87,6 +87,21 @@ let curated = file.remove_loop_row(target, 1, expected_source=source).unwrap()
 
 在 `examples/curate-loop` 运行 `node verify.mjs` 可重放真实文件接收。生产者从传入路径读取 CIF，按示例中明确的已知布局/索引剔除记录；验证脚本写入新文件并读回，再交给 checkout 外的公共 API/真实 Lunar 接收器。独立手写 CIF2 样本240→210字节，保留范围外的注释和 A/C 的2/u0.01、4/u0.02；CIF1样本87→61字节，移除带分号文本的X行并保留Y的1.25/u0.005。米及剔除策略由调用者声明，库不判定异常值。另一个输入变体核对无关原字段也保留，生产者没有回放固定输出。此例不新增文件工作流命令或通用计划；自编接收器不代表第三方采用。
 
+## 补入一条缺失的处理说明
+
+`file.add_pair(scope, name, fragment, expected_source=source)` 向明确选择的原块或帧增加一个尚不存在的 Pair，返回 `Result[String, String]`。源快照完全相同，`scope` 须与有效同版本原文中的唯一 Container 结构匹配；相同源文另次解析的等价见证也可用。`name` 是一个合法数据名，在该作用域的直属 Pair/loop 表头中须按既有规范名称匹配规则互异；其他块/帧可以已有同名字段。已有字段用原替换接口处理。
+
+```moonbit
+let file = @cif.parse_string(source).unwrap()
+let scope = file.blocks[0].frames[0] // 调用者明确选择的原帧
+let note = @cif.format_string("已核对", version=file.version).unwrap()
+let annotated = file.add_pair(scope, "_processing_note", note, expected_source=source).unwrap()
+```
+
+`fragment` 是一个已编码值，说明文字复用 `format_string`，不拼接引号。插入点在原作用域头之后，越过原前导空白/注释，位于首个原有效词元或EOF之前；新数据名和值各占自己的行，新增分隔符为LF，必要时补一个前导LF。所有旧字节保持原序，包括原BOM/CRLF、缩进、注释、数值和引号；保留的缩进可能成为空行。验证合法数据名、单值、直接作用域重名及完整同版本结果，并检查只增加一个Pair和原条目/帧/块/跨度的对应关系。返回完整文本或Err，原对象不变，不执行磁盘写入、不推断字典或单位。
+
+在 `examples/provenance-pair` 运行 `node verify.mjs` 可重放真实文件接收：生产者从路径读取原CIF，按示例已知布局选择帧或块，通过新接口创建调用者的 `_processing_note`。验证脚本写出并读回完整文件，交给checkout外的公共API/真实Lunar接收器核对新增说明及全部原量值。独立手写CIF2为166→195字节，在原注释后插入29字节；CIF1为50→87字节，保留EOF注释和原缩进。还以另一原字段的输入变体核对完整输出，防止常量回放。默认接收目录在checkout父目录，可用 `CIF_EXAMPLE_RECIPIENT_ROOT` 指向另一个可写外部目录。此例不新增通用文件命令或编辑计划；自编接收器不代表第三方采用。
+
 ## 任意本地文件的查询与批量写出
 
 `examples/file-workflow` 是独立的 Node.js >=22.3 / JS 命令行例程，通过文件路径读取UTF-8 CIF1/CIF2和JSON计划，输入内容不放进命令行参数。核心库仍支持JS/Wasm-GC；旧`cmd/inspect`仍接收文本。

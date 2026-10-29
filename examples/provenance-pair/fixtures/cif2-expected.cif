@@ -1,0 +1,15 @@
+﻿#\#CIF_2.0
+data_meta
+_processing_note 'keep root'
+save_run
+# original frame note
+_processing_note
+'已核对'
+loop_
+_id
+_length_m
+A 1.000(10)
+B 3.500(20)
+save_
+data_other
+_x keep
